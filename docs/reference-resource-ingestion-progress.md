@@ -16,7 +16,7 @@
 |---|---|---|---|
 | 0 | 来源治理与执行基线 | 已完成 | SOURCES、两份来源审计、验证模板、隔离验证 |
 | 1 | 通用镜头、电影光影、电影画面语言 | 已完成 | 4 个基础叶子、4 个索引路由、批次验证 |
-| 2 | 人物选择器、Prompt、参考图能力 | 待执行 | 以更新现有叶子为主 |
+| 2 | 人物选择器、Prompt、参考图能力 | 已完成 | 5 个现有叶子增补；3 项重复候选不新建 |
 | 3 | 角色、场景、分镜任务能力 | 待执行 | Playbook、controls 与必要 library 增补 |
 | 4 | 写真、女友感、综合风格拆分 | 待执行 | 摄影风格增补与迁移结论 |
 | 5 | 产品营销与电商主图 | 待执行 | awesome 首批 3–5 个高价值叶子 |
@@ -28,16 +28,10 @@
 
 ## Phase 0 执行记录
 
-### 已完成
-
-- [x] 创建 `references/SOURCES.md`
-- [x] 创建 `docs/source-audits/user-curated-2026-07-10.md`
-- [x] 创建 `docs/source-audits/awesome-gpt-image-2.md`
-- [x] 创建 `docs/source-audits/validation-template.md`
-- [x] 创建本进度台账
-- [x] 明确用户资料和外部资源的许可、署名和使用边界
-- [x] 明确正式 Reference 不得依赖临时摄取目录
-- [x] 核对 `SKILL.md` 与 `references/index.md` 未引用 `docs/source-staging/`
+- [x] 建立 `references/SOURCES.md`
+- [x] 建立两类来源审计和统一验证模板
+- [x] 明确许可、署名和使用边界
+- [x] 核对运行时入口未引用 `docs/source-staging/`
 - [x] 创建 `docs/source-audits/phase-0-source-governance-validation.md`
 
 ## Phase 1 执行记录
@@ -51,20 +45,42 @@
 
 ### 更新索引
 
-- [x] `references/controls/composition-camera/index.md`
-- [x] `references/controls/lighting-color/index.md`
-- [x] `references/libraries/lighting-color/index.md`
-- [x] `references/styles/cinematic/index.md`
+- [x] composition-camera
+- [x] lighting-color control
+- [x] lighting-color library
+- [x] cinematic style
 
 ### 验证
 
-- [x] 普通人物写真只命中镜头控制，不误加载电影风格
-- [x] 电影剧照按需联动 style、camera、lighting 和 palette
-- [x] 色调选择器可独立命中
-- [x] 办公室普通混合光继续优先命中专用叶子
-- [x] 角色三视图等相邻任务不误加载电影叶子
-- [x] 默认加载预算未突破
 - [x] 创建 `docs/source-audits/user-curated-2026-07-10-phase-1-validation.md`
+- [x] 通用与专用镜头 / 光线路由可区分
+- [x] 默认加载预算未突破
+
+## Phase 2 执行记录
+
+### 更新现有叶子
+
+- [x] `references/libraries/human/hairstyle-selector.md`
+- [x] `references/libraries/human/expression-selector.md`
+- [x] `references/controls/pose-action/lifestyle-micro-expression.md`
+- [x] `references/inputs/single-image-reference.md`
+- [x] `references/tasks/prompt-reverse-engineering/playbook.md`
+
+### 查重后不新增
+
+- [x] 妆容选择器：现有叶子已完整覆盖
+- [x] 基础 Prompt 结构：不建立第二套万能输出真源
+- [x] 人物外貌万能页：选择器部分已有归属，写真风格延后 Phase 4
+
+### 验证
+
+- [x] 发型可独立命中，不默认加载妆容与表情
+- [x] 表情选择与微表情发生机制分离
+- [x] 静态终态与视频变化过程分离
+- [x] 单图输入与反推任务职责分离
+- [x] 风格变量与原图内容变量分离
+- [x] 创建 `docs/source-audits/user-curated-2026-07-10-phase-2-validation.md`
+- [x] 更新 `references/SOURCES.md`
 
 ## 批次提交说明
 
@@ -74,3 +90,4 @@
 
 - 2026-07-10：Phase 0 完成，建立来源治理、许可策略、验证模板和临时区隔离基线。
 - 2026-07-10：Phase 1 完成，新增通用镜头、电影灯光、电影色调和电影画面语言四个叶子并接通路由。
+- 2026-07-10：Phase 2 完成，增补发型、表情、微表情、单图输入和 Prompt 反推能力，并避免新增重复万能叶子。
