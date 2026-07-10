@@ -79,7 +79,7 @@
 - 许可证：CC BY 4.0
 - 使用方式：分类抽样、案例拆解、结构提炼和规则抽象
 - 直接引用策略：正式叶子不复制完整 Prompt、图片、具体品牌文案、对白或 IP 风格
-- 当前状态：Phase 5–7 已完成，Phase 8–9 待处理
+- 当前状态：Phase 5–8 已完成，Phase 9 待评估
 
 ### Phase 5：产品营销与电商主图
 
@@ -120,7 +120,23 @@
 
 验证：`../docs/source-audits/awesome-gpt-image-2-comic-storyboard-validation.md`
 
-处理说明：漫画版式、漫画媒介表现和多格连续性分别沉淀；四格、对白与拟声词未建立重复独立叶子。
+### Phase 8：摄影、电影、人物与场景交叉验证
+
+交叉审计：`../docs/source-audits/awesome-gpt-image-2-photography-cinematic-human-environment-cross-validation.md`
+
+新增正式 Reference：
+
+- `styles/photography/environmental-editorial-portrait.md`
+
+更新：
+
+- `styles/photography/index.md`
+- `styles/photography/lifestyle-candid-photography.md`
+- `styles/cinematic/film-still-language.md`
+
+验证：`../docs/source-audits/awesome-gpt-image-2-photography-cinematic-human-environment-validation.md`
+
+处理说明：新增环境人像这一真实空档；人物身份、空间调度、角色资产和场景资产经外部案例验证后保持原结构，不新增重复叶子。
 
 ---
 
@@ -131,3 +147,4 @@
 - 2026-07-10：完成 awesome Phase 5 产品视觉登记。
 - 2026-07-10：完成 awesome Phase 6 图文设计登记。
 - 2026-07-10：完成 awesome Phase 7 漫画、多格连续性与故事板边界登记。
+- 2026-07-10：完成 awesome Phase 8 摄影、电影、人物与场景交叉验证登记。
