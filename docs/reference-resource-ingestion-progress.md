@@ -24,9 +24,9 @@
 | 7 | 漫画、故事板与多格连续性 | 已完成 | 3 个漫画连续性叶子和故事板边界更新 |
 | 8 | 摄影、电影、人物与场景交叉验证 | 已完成 | 新增环境人像；三条人物摄影路线边界收敛 |
 | 9 | 插画、3D、游戏和长尾类别 | 已完成 | 条件启动 4 项高价值能力，其余保留审计层 |
-| 10 | 自动检查、回归和临时区清理 | 待执行 | 检查脚本、回归报告和临时区清理 |
+| 10 | 自动检查、回归和临时区清理 | 已完成 | 检查脚本、GitHub Actions、28 条回归和临时区清理 |
 
-## Phase 0–8 执行摘要
+## Phase 0–9 执行摘要
 
 - [x] 建立来源治理、许可策略和验证基线
 - [x] 完成用户整理资料 Phase 1–4 的迁移、去重与边界收敛
@@ -34,84 +34,57 @@
 - [x] 完成海报、文字与信息图能力
 - [x] 完成漫画分格、漫画视觉语言和多格连续性能力
 - [x] 完成摄影、电影、人物与场景交叉验证
+- [x] 条件启动并完成游戏资产、动画主视觉、像素艺术和等距微缩能力
 
-## Phase 9 执行记录
+## Phase 10 执行记录
 
-### 启动判断
+### 自动检查
 
-- [x] 用户历史请求中存在动画主视觉、角色资产、场景资产和游戏式视觉需求
-- [x] 来源仓库和画廊存在多个不同案例支持
-- [x] 候选方向可拆成媒介、透视、渲染和交付规则
-- [x] 与现有产品、漫画、摄影和故事板叶子完成查重
-- [x] 仅启动满足条件的方向
+- [x] 新增 `scripts/check_reference_integrity.py`
+- [x] 检查必需入口、相对链接和 index 目标路径
+- [x] 检查运行时对 source-staging 和旧目录的违规引用
+- [x] 检查旧目录残留
+- [x] 检查空叶子、标题缺失、明显重复文件名和 H1
+- [x] 检查临时摄取目录是否仍包含文件
 
-### 抽样与审计
+### GitHub Actions
 
-- [x] Game Asset
-- [x] Anime / Manga
-- [x] Pixel Art
-- [x] Isometric
-- [x] Chibi / Q-Style 与 3D Render 作为辅助对照
-- [x] 创建 `docs/source-audits/awesome-gpt-image-2-long-tail-game-illustration-sampling.md`
+- [x] 新增 `.github/workflows/reference-integrity.yml`
+- [x] 支持 pull_request、push 和 workflow_dispatch
+- [x] 使用 Python 3.11 和标准库执行完整性脚本
+- [ ] GitHub Connector 尚未返回远端 Actions 运行记录，因此未声称 CI 已通过
 
-### 新增正式叶子
+### 行为回归
 
-- [x] `references/libraries/composition-shot/game-asset-presentation-types.md`
-- [x] `references/styles/anime/cinematic-anime-key-visual.md`
-- [x] `references/styles/illustration/pixel-art-visual-language.md`
-- [x] `references/styles/3d-rendering/isometric-miniature-world.md`
-
-### 更新
-
-- [x] composition-shot index
-- [x] anime index
-- [x] illustration index
-- [x] 3d-rendering index
-- [x] character-assets Playbook
-- [x] scene-assets Playbook
-
-### 关键决策
-
-- [x] 游戏资产被定义为交付类型，不建立万能 game style
-- [x] Key Visual 与角色 / 场景资产板明确分离
-- [x] 像素艺术要求统一逻辑分辨率、像素簇和有限色板
-- [x] 等距微缩世界要求功能区、连接结构和统一尺度
-- [x] Chibi 不单独建 style，由比例、角色资产和 anime 组合承担
-- [x] Cyberpunk 不单独建 style，由题材、光色、材质和现有媒介组合承担
-- [x] Watercolor、Oil Painting、Sketch、Ink 和 App / Web Design 暂留审计层
-
-### 验证
-
-- [x] 游戏角色设定板、动画 Key Visual、Sprite、像素战斗和等距经营场景可正确命中
-- [x] 普通动漫人物单图不误加载游戏资产交付类型
-- [x] 普通真人场景资产不误加载像素、等距或动画 style
-- [x] anime、pixel 和 isometric style 互斥选择
+- [x] 新增 `docs/reference-behavior-regression-final.md`
+- [x] 覆盖 28 条输入、任务、产品、图文、漫画、摄影、游戏和诊断路由
+- [x] 28 / 28 仓库级人工路由审计通过
 - [x] 默认加载预算未突破
-- [x] 创建 `docs/source-audits/awesome-gpt-image-2-long-tail-game-illustration-validation.md`
-- [x] 更新 `references/SOURCES.md`
+- [x] 相邻能力反例未发生误加载
 
-## Phase 10 下一步
+### 临时区清理
 
-最低执行：
+- [x] 新增 `docs/source-audits/user-curated-2026-07-10-final-mapping.md`
+- [x] 15 / 15 用户资料完成最终去向登记
+- [x] 删除 raw 下 15 份原始 Markdown
+- [x] 删除临时 README 和 ingestion-map
+- [x] 共删除 17 份临时文件
+- [x] 更新 `references/SOURCES.md`，不再依赖临时路径
+- [x] 原始内容继续由 Git 历史追踪
 
-1. Markdown 相对链接存在性检查；
-2. 索引目标路径检查；
-3. 重复文件名和明显重复标题检查；
-4. 正式 Reference 指向 `docs/source-staging/` 的违规检查；
-5. 空叶子和只有标题文件检查；
-6. 旧路径残留检查；
-7. 扩展行为回归；
-8. 清理临时摄取目录。
+### 最终验收
+
+- [x] 新增 `docs/source-audits/phase-10-final-validation.md`
+- [x] Phase 0–10 全部完成
+- [x] 后续知识扩充改为独立批次，不再追加本计划 Phase
 
 ## 批次提交说明
 
-当前 GitHub Contents 写入接口会按文件形成提交。各批次通过抽样、验证和进度文档记录逻辑提交范围。
+当前 GitHub Contents 写入接口会按文件形成提交。各批次通过抽样、验证、进度和最终验收文档记录逻辑提交范围。
 
 ## 最近更新
 
 - 2026-07-10：Phase 0–4 完成用户资料迁移与边界收敛。
-- 2026-07-10：Phase 5 完成产品营销与电商主图。
-- 2026-07-10：Phase 6 完成海报、文字与信息图。
-- 2026-07-10：Phase 7 完成漫画、多格连续性和故事板边界补强。
-- 2026-07-10：Phase 8 完成摄影、电影、人物与场景交叉验证。
-- 2026-07-10：Phase 9 条件启动并完成游戏资产交付、动画主视觉、像素艺术和等距微缩世界四项能力。
+- 2026-07-10：Phase 5–9 完成外部高价值知识分批沉淀与交叉验证。
+- 2026-07-10：Phase 10 完成自动检查、28 条行为回归、最终迁移映射和临时摄取目录清理。
+- 2026-07-10：当前资源沉淀实施计划 Phase 0–10 全部完成。
