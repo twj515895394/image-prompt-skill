@@ -1,4 +1,4 @@
-# Phase 4：现有 Reference 迁移映射
+# Phase 4：Reference 迁移完成记录
 
 ## 迁移原则
 
@@ -7,43 +7,78 @@
 - 混合职责文件按内容拆分
 - 同一知识只保留一个正文版本
 
-## 第一批迁移映射
+## 高频控制与资料迁移
 
-| 原文件 | 内容审计 | 新归属 | 处理方式 |
-|---|---|---|---|
-| `style-control/anti-ai-realism.md` | 真实感判断、拍摄来源、材质、构图瑕疵、负向建议 | `controls/realism-quality/anti-ai-realism.md` | 整体迁移并优化职责 |
-| `style-control/candid-composition-imperfections.md` | 抓拍构图偏移、裁切、遮挡、通路机位 | `controls/composition-camera/candid-composition-imperfections.md` | 整体迁移 |
-| `style-control/failure-patterns-negative.md` | 多领域失败模式和负向约束选择 | `diagnostics/common-image-failure-patterns.md` | 作为跨领域诊断迁移 |
-| `scene-office/office-candid-photography.md` | 环境锚点、机位、混合光、摄影表现混合 | 见下方 4 个文件 | 按职责拆分 |
-| `portrait/side-profile-bodyline.md` | 侧颜、体态、动作重心和镜头关系 | `controls/pose-action/side-profile-body-line.md` | 整体迁移并减少服装资料重复 |
-| `portrait/commuter-outfit-bodyline.md` | 通勤单品、面料、版型和线条选择 | `libraries/human/commuter-outfit-materials.md` | 作为资料库迁移 |
-| `portrait/lifestyle-micro-expression.md` | 微表情控制、视线、嘴角、肩颈和手部联动 | `controls/pose-action/lifestyle-micro-expression.md` | 作为表演控制迁移 |
+| 原文件 | 新归属 | 结果 |
+|---|---|---|
+| `style-control/anti-ai-realism.md` | `controls/realism-quality/anti-ai-realism.md` | 已迁移并删除旧文件 |
+| `style-control/candid-composition-imperfections.md` | `controls/composition-camera/candid-composition-imperfections.md` | 已迁移并删除旧文件 |
+| `style-control/failure-patterns-negative.md` | `diagnostics/common-image-failure-patterns.md` | 已迁移并删除旧文件 |
+| `portrait/side-profile-bodyline.md` | `controls/pose-action/side-profile-body-line.md` | 已迁移并删除旧文件 |
+| `portrait/commuter-outfit-bodyline.md` | `libraries/human/commuter-outfit-materials.md` | 已迁移并删除旧文件 |
+| `portrait/lifestyle-micro-expression.md` | `controls/pose-action/lifestyle-micro-expression.md` | 已迁移并删除旧文件 |
 
 ## 办公室混合文件拆分
 
-| 原内容 | 新文件 |
+原文件：
+
+```text
+references/scene-office/office-candid-photography.md
+```
+
+拆分结果：
+
+| 原内容职责 | 新文件 |
 |---|---|
 | 办公空间类型、道具和环境锚点 | `libraries/environment/office-workplace-environment.md` |
-| 同事视角、侧后方、通路机位、构图关系 | `controls/composition-camera/office-candid-camera.md` |
-| 顶灯、窗光、冷白反射和普通阴影 | `controls/lighting-color/office-mixed-light.md` |
+| 同事视角、侧后方、通路机位和构图关系 | `controls/composition-camera/office-candid-camera.md` |
+| 顶灯、窗光、环境反射和普通阴影 | `controls/lighting-color/office-mixed-light.md` |
 | 生活化纪实摄影表现 | `styles/photography/lifestyle-candid-photography.md` |
 
-## 暂不删除
+新索引接通后，原混合文件已删除。
 
-第一批新文件和索引落地前，以下旧目录暂时保留：
+## Appendix 迁移
 
-- `references/style-control/`
-- `references/scene-office/`
-- `references/portrait/`
+| 原文件 | 新归属 | 结果 |
+|---|---|---|
+| `appendix/makeup-appendix.md` | `libraries/human/female-makeup-selector.md` | 被用户提供的完整选择器替代，旧文件已删除 |
+| `appendix/hairstyle-appendix.md` | `libraries/human/hairstyle-selector.md` | 已迁移扩展并删除旧文件 |
+| `appendix/expression-appendix.md` | `libraries/human/expression-selector.md` | 已迁移扩展并删除旧文件 |
 
-完成新路由检查后，再逐个删除已完成迁移的旧文件。
+微表情执行方法与表情选项已分开：
 
-## 下一批
+```text
+选择什么表情
+→ libraries/human/expression-selector.md
 
-后续审计：
+如何让表情自然发生
+→ controls/pose-action/lifestyle-micro-expression.md
+```
 
-- `appendix/makeup.md`
-- `appendix/hairstyle.md`
-- `appendix/expression.md`
-- 用户提供的《女主妆容选择器》
-- 其余输入、模式和任务旧文件
+## 输入、模式与任务迁移
+
+| 旧内容 | 新归属 | 结果 |
+|---|---|---|
+| `mode-quick/quick-mode.md` | `SKILL.md` | 有效规则合并后删除 |
+| `mode-interactive/interactive-mode.md` | `SKILL.md` | 追问规则和任务优先级合并后删除 |
+| `input-text-only/text-expansion.md` | `inputs/text-input-expansion.md` | 已迁移并删除 |
+| `input-image-ref/image-reference-analysis.md` | `inputs/single-image-reference.md` 与 `inputs/multi-image-reference.md` | 拆分增强后删除 |
+| 旧 6 类任务目录 | `tasks/` 下统一 8 类任务 | 已迁移并删除旧文件 |
+
+## 模板迁移
+
+旧模板：
+
+- `quick-output-template.md`
+- `interactive-output-template.md`
+- `character-asset-pack-template.md`
+
+已由 8 份按任务划分的模板替代，旧模板均已删除。
+
+## 最终结果
+
+- 已迁移内容均存在唯一正文真源
+- 新分类索引已经接通
+- 旧正文已经删除
+- 空目录不会被 Git 跟踪，因此旧目录随叶子删除自然消失
+- 后续新增资料继续执行“先分析职责和检索轴，再决定整份保留或拆分”的规则
