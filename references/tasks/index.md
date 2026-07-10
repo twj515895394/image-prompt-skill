@@ -6,20 +6,11 @@
 
 ## 成片生图
 
-适用于：
-
-- 单张高完成度成片
-- 产品主视觉或白底产品图
-- 海报、封面、人物写真
-- 电影感画面、概念图
+适用于单张高完成度成片、产品图、海报、封面、写真和概念图。
 
 读取：
 
 - `finished-image/playbook.md`
-
-迁移期间旧文件仍可作为临时真源：
-
-- `../task-finished-image/finished-image-playbook.md`
 
 ## 整体图生图
 
@@ -28,10 +19,6 @@
 读取：
 
 - `image-to-image/playbook.md`
-
-迁移期间旧文件仍可作为临时真源：
-
-- `../task-image-to-image/playbook.md`
 
 ## 局部图片编辑
 
@@ -53,33 +40,33 @@
 
 适用于三视图、多角度头像、表情板、换装板、手部、鞋履和角色主视觉。
 
-迁移期间读取：
+读取：
 
-- `../task-character-assets/character-assets-playbook.md`
+- `character-assets/playbook.md`
 
 ## 场景资产
 
 适用于场景总览、空景、站位、动线、道具关系和镜头入口。
 
-迁移期间读取：
+读取：
 
-- `../task-scene-assets/playbook.md`
+- `scene-assets/playbook.md`
 
 ## 分镜资产
 
 适用于故事板总板、逐镜关键帧和动作拆解。
 
-迁移期间读取：
+读取：
 
-- `../task-storyboard-assets/playbook.md`
+- `storyboard-assets/playbook.md`
 
 ## 视频参考帧
 
 适用于图生视频的首帧、尾帧和关键过渡帧。
 
-迁移期间读取：
+读取：
 
-- `../task-video-reference-frames/playbook.md`
+- `video-reference-frames/playbook.md`
 
 ## 判断提醒
 
