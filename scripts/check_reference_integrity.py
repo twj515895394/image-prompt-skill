@@ -30,6 +30,37 @@ FORBIDDEN_RUNTIME_FRAGMENTS = (
     "references/recipes/",
 )
 
+FORBIDDEN_LEGACY_PATHS = (
+    "references/subjects",
+    "references/appendix",
+    "references/recipes",
+    "references/input-image-ref",
+    "references/input-text-only",
+    "references/mode-interactive",
+    "references/mode-quick",
+    "references/portrait",
+    "references/scene-office",
+    "references/style-control",
+    "references/task-character-assets",
+    "references/task-finished-image",
+    "references/task-image-to-image",
+    "references/task-scene-assets",
+    "references/task-storyboard-assets",
+    "references/task-video-reference-frames",
+)
+
+REQUIRED_PATHS = (
+    "SKILL.md",
+    "references/index.md",
+    "references/inputs/index.md",
+    "references/tasks/index.md",
+    "references/controls/index.md",
+    "references/libraries/index.md",
+    "references/styles/index.md",
+    "references/diagnostics/index.md",
+    "references/SOURCES.md",
+)
+
 IGNORED_DUPLICATE_BASENAMES = {"index.md", "playbook.md", "README.md"}
 
 
@@ -47,8 +78,7 @@ def strip_target(target: str) -> str:
     target = unquote(target.strip())
     if target.startswith("<") and target.endswith(">"):
         target = target[1:-1]
-    target = target.split("#", 1)[0].strip()
-    return target
+    return target.split("#", 1)[0].strip()
 
 
 def is_external_or_virtual(target: str) -> bool:
@@ -61,6 +91,12 @@ def is_external_or_virtual(target: str) -> bool:
         or "{" in target
         or "}" in target
     )
+
+
+def is_runtime_file(path: Path) -> bool:
+    if path == ROOT / "SKILL.md":
+        return True
+    return any(root.is_dir() and root in path.parents for root in RUNTIME_ROOTS)
 
 
 def resolve_target(source: Path, raw_target: str) -> Path | None:
@@ -79,31 +115,40 @@ def resolve_target(source: Path, raw_target: str) -> Path | None:
     return candidate
 
 
-def collect_reference_targets(path: Path, text: str) -> set[str]:
+def collect_reference_targets(text: str, include_inline: bool) -> set[str]:
     targets = {match.group(1).strip() for match in MARKDOWN_LINK_RE.finditer(text)}
-    targets.update(match.group(1).strip() for match in INLINE_MD_RE.finditer(text))
+    if include_inline:
+        targets.update(match.group(1).strip() for match in INLINE_MD_RE.finditer(text))
     return targets
+
+
+def check_required_paths(errors: list[str]) -> None:
+    for relative in REQUIRED_PATHS:
+        if not (ROOT / relative).exists():
+            errors.append(f"required architecture path missing: {relative}")
 
 
 def check_links(files: list[Path], errors: list[str]) -> None:
     for path in files:
         text = path.read_text(encoding="utf-8")
-        for raw_target in sorted(collect_reference_targets(path, text)):
+        targets = collect_reference_targets(text, include_inline=is_runtime_file(path))
+        for raw_target in sorted(targets):
             resolved = resolve_target(path, raw_target)
             if resolved is not None and not resolved.exists():
+                try:
+                    display = resolved.relative_to(ROOT)
+                except ValueError:
+                    display = resolved
                 errors.append(
                     f"dangling path: {path.relative_to(ROOT)} -> {raw_target} "
-                    f"(resolved as {resolved.relative_to(ROOT) if ROOT in resolved.parents else resolved})"
+                    f"(resolved as {display})"
                 )
 
 
 def check_index_targets(errors: list[str]) -> None:
     for path in sorted((ROOT / "references").rglob("index.md")):
         text = path.read_text(encoding="utf-8")
-        targets = collect_reference_targets(path, text)
-        if not targets:
-            errors.append(f"route index has no Markdown target: {path.relative_to(ROOT)}")
-            continue
+        targets = collect_reference_targets(text, include_inline=True)
         for raw_target in sorted(targets):
             target = strip_target(raw_target)
             if not target.endswith(".md") or is_external_or_virtual(target):
@@ -121,6 +166,13 @@ def check_forbidden_runtime_paths(errors: list[str]) -> None:
                 errors.append(
                     f"forbidden runtime path '{fragment}' in {path.relative_to(ROOT)}"
                 )
+
+
+def check_legacy_paths_removed(errors: list[str]) -> None:
+    for relative in FORBIDDEN_LEGACY_PATHS:
+        path = ROOT / relative
+        if path.exists():
+            errors.append(f"legacy path still exists: {relative}")
 
 
 def check_empty_leaves(errors: list[str]) -> None:
@@ -184,9 +236,11 @@ def main() -> int:
     errors: list[str] = []
     files = markdown_files(SCAN_ROOTS)
 
+    check_required_paths(errors)
     check_links(files, errors)
     check_index_targets(errors)
     check_forbidden_runtime_paths(errors)
+    check_legacy_paths_removed(errors)
     check_empty_leaves(errors)
     check_duplicate_names_and_titles(errors)
     check_staging_directory(errors)
