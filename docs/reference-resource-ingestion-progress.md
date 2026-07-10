@@ -18,7 +18,7 @@
 | 1 | 通用镜头、电影光影、电影画面语言 | 已完成 | 4 个基础叶子、4 个索引路由、批次验证 |
 | 2 | 人物选择器、Prompt、参考图能力 | 已完成 | 5 个现有叶子增补；3 项重复候选不新建 |
 | 3 | 角色、场景、分镜任务能力 | 已完成 | 3 个新叶子、3 个 Playbook、3 个索引更新 |
-| 4 | 写真、女友感、综合风格拆分 | 待执行 | 摄影风格增补与迁移结论 |
+| 4 | 写真、女友感、综合风格拆分 | 已完成 | 更新生活化纪实摄影；不新增 3 类重复万能页 |
 | 5 | 产品营销与电商主图 | 待执行 | awesome 首批 3–5 个高价值叶子 |
 | 6 | 海报、文字和信息图 | 待执行 | 平面视觉、文字层级和版式知识 |
 | 7 | 漫画、故事板与多格连续性 | 待执行 | 漫画风格、版式和连续性知识 |
@@ -52,33 +52,35 @@
 
 ## Phase 3 执行记录
 
-### 新增叶子
+- [x] 新增角色身份锚点、站位方向控制和故事板类型选择器
+- [x] 更新角色、场景和分镜 Playbook
+- [x] 更新 identity、spatial 和 composition-shot 索引
+- [x] 验证身份、空间、版式、拆 Pack 和加载预算
+- [x] 创建 Phase 3 验证文档
 
-- [x] `references/controls/identity-consistency/character-identity-anchors.md`
-- [x] `references/controls/spatial-blocking/staging-and-direction-control.md`
-- [x] `references/libraries/composition-shot/storyboard-board-types.md`
+## Phase 4 执行记录
 
-### 更新 Playbook
+### 更新正式叶子
 
-- [x] `references/tasks/character-assets/playbook.md`
-- [x] `references/tasks/scene-assets/playbook.md`
-- [x] `references/tasks/storyboard-assets/playbook.md`
+- [x] `references/styles/photography/lifestyle-candid-photography.md`
+- [x] `references/styles/photography/index.md`
 
-### 更新索引
+### 迁移结论
 
-- [x] identity-consistency
-- [x] spatial-blocking
-- [x] composition-shot
+- [x] “女友感 / 男友视角”并入生活化纪实摄影唯一真源
+- [x] 不新增人物写真万能 Prompt 页
+- [x] 不新增综合生图风格选择器
+- [x] 综合风格资料只作为 Phase 5–9 的迁移来源
+- [x] 长尾风格等待外部多案例验证
 
-### 验证
+### 验证与记录
 
-- [x] 角色身份锚点与人物选项分离
-- [x] 场景空间原点、三角站位和动线可执行
-- [x] 控制型与风格型故事板边界清楚
-- [x] 超过 12 镜优先拆分 Pack
-- [x] 相邻单图任务不误加载资产控制叶子
-- [x] 默认加载预算未突破
-- [x] 创建 `docs/source-audits/user-curated-2026-07-10-phase-3-validation.md`
+- [x] 区分朋友、同事、伴侣关系视角
+- [x] 防止漂成偷拍、商业写真和强制性感摆拍
+- [x] 区分生活化纪实与电影剧照
+- [x] 画幅适配不改变风格核心
+- [x] 创建 `docs/source-audits/user-curated-2026-07-10-phase-4-style-migration-decisions.md`
+- [x] 创建 `docs/source-audits/user-curated-2026-07-10-phase-4-validation.md`
 - [x] 更新 `references/SOURCES.md`
 
 ## 批次提交说明
@@ -91,3 +93,4 @@
 - 2026-07-10：Phase 1 完成，新增通用镜头、电影灯光、电影色调和电影画面语言四个叶子并接通路由。
 - 2026-07-10：Phase 2 完成，增补发型、表情、微表情、单图输入和 Prompt 反推能力，并避免新增重复万能叶子。
 - 2026-07-10：Phase 3 完成，补齐角色身份、空间调度、故事板类型和三类资产 Playbook。
+- 2026-07-10：Phase 4 完成，将亲近关系写真并入生活化纪实摄影，并完成综合风格迁移边界收敛。
