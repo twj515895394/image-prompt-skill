@@ -24,7 +24,7 @@
 | 7 | 漫画、故事板与多格连续性 | 已完成 | 3 个漫画连续性叶子和故事板边界更新 |
 | 8 | 摄影、电影、人物与场景交叉验证 | 已完成 | 新增环境人像；三条人物摄影路线边界收敛 |
 | 9 | 插画、3D、游戏和长尾类别 | 已完成 | 条件启动 4 项高价值能力，其余保留审计层 |
-| 10 | 自动检查、回归和临时区清理 | 已完成 | 检查脚本、GitHub Actions、28 条回归和临时区清理 |
+| 10 | 自动检查、回归和临时区清理 | 已完成 | Integrity CI 通过、28 条回归和临时区清理 |
 
 ## Phase 0–9 执行摘要
 
@@ -52,7 +52,9 @@
 - [x] 新增 `.github/workflows/reference-integrity.yml`
 - [x] 支持 pull_request、push 和 workflow_dispatch
 - [x] 使用 Python 3.11 和标准库执行完整性脚本
-- [ ] GitHub Connector 尚未返回远端 Actions 运行记录，因此未声称 CI 已通过
+- [x] 上传 `reference-integrity-report` artifact，便于失败定位
+- [x] 首次执行发现并修复旧 appendix 索引和 human index 路径问题
+- [x] Reference Integrity Run #54 执行成功
 
 ### 行为回归
 
@@ -75,6 +77,7 @@
 ### 最终验收
 
 - [x] 新增 `docs/source-audits/phase-10-final-validation.md`
+- [x] 自动完整性 CI 通过
 - [x] Phase 0–10 全部完成
 - [x] 后续知识扩充改为独立批次，不再追加本计划 Phase
 
@@ -87,4 +90,4 @@
 - 2026-07-10：Phase 0–4 完成用户资料迁移与边界收敛。
 - 2026-07-10：Phase 5–9 完成外部高价值知识分批沉淀与交叉验证。
 - 2026-07-10：Phase 10 完成自动检查、28 条行为回归、最终迁移映射和临时摄取目录清理。
-- 2026-07-10：当前资源沉淀实施计划 Phase 0–10 全部完成。
+- 2026-07-10：Reference Integrity CI Run #54 通过，当前资源沉淀实施计划 Phase 0–10 全部完成。
