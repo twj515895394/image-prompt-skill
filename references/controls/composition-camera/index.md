@@ -8,6 +8,12 @@
 
 - `shot-angle-lens-selection.md`
 
+## 产品 Hero 构图
+
+当电商主图、产品广告或品牌主视觉需要控制产品角度、主体占比、第一视觉落点、辅助元素动线和文案安全区时，读取：
+
+- `product-hero-composition.md`
+
 ## 抓拍构图与合理不完美
 
 当用户要求手机抓拍、同事视角、朋友视角、非对称构图、轻微裁切或前景遮挡时，读取：
@@ -23,6 +29,7 @@
 ## 边界
 
 - 通用镜头判断使用 `shot-angle-lens-selection.md`；
+- 产品商业构图使用 `product-hero-composition.md`；
 - 特定场景已有专用叶子时，优先读取专用叶子；
 - 具体构图模板和镜头方案列表归入 `libraries/composition-shot/`；
 - 本索引不承载具体镜头知识。
