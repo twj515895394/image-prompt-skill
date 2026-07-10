@@ -74,12 +74,13 @@
 
 - 来源名称：Awesome GPT Image 2 Prompts
 - 来源 URL：`https://github.com/YouMind-OpenLab/awesome-gpt-image-2`
+- 来源画廊：`https://youmind.com/gpt-image-2-prompts`
 - 来源审计：`../docs/source-audits/awesome-gpt-image-2.md`
 - 访问日期：2026-07-10
 - 许可证：CC BY 4.0
 - 使用方式：分类抽样、案例拆解、结构提炼和规则抽象
 - 直接引用策略：正式叶子不复制完整 Prompt、图片、具体品牌文案、对白或 IP 风格
-- 当前状态：Phase 5–8 已完成，Phase 9 待评估
+- 当前状态：Phase 5–9 已完成
 
 ### Phase 5：产品营销与电商主图
 
@@ -138,6 +139,30 @@
 
 处理说明：新增环境人像这一真实空档；人物身份、空间调度、角色资产和场景资产经外部案例验证后保持原结构，不新增重复叶子。
 
+### Phase 9：插画、3D、游戏资产与长尾分类
+
+抽样：`../docs/source-audits/awesome-gpt-image-2-long-tail-game-illustration-sampling.md`
+
+新增正式 Reference：
+
+- `libraries/composition-shot/game-asset-presentation-types.md`
+- `styles/anime/cinematic-anime-key-visual.md`
+- `styles/illustration/pixel-art-visual-language.md`
+- `styles/3d-rendering/isometric-miniature-world.md`
+
+更新：
+
+- `libraries/composition-shot/index.md`
+- `styles/anime/index.md`
+- `styles/illustration/index.md`
+- `styles/3d-rendering/index.md`
+- `tasks/character-assets/playbook.md`
+- `tasks/scene-assets/playbook.md`
+
+验证：`../docs/source-audits/awesome-gpt-image-2-long-tail-game-illustration-validation.md`
+
+处理说明：Phase 9 按条件启动，只沉淀游戏资产交付、动画主视觉、像素艺术和等距微缩世界。Watercolor、Oil Painting、Sketch / Line Art、Ink / Chinese Style、Chibi、Cyberpunk 和 App / Web Design 继续保留在审计层。
+
 ---
 
 ## 变更记录
@@ -148,3 +173,4 @@
 - 2026-07-10：完成 awesome Phase 6 图文设计登记。
 - 2026-07-10：完成 awesome Phase 7 漫画、多格连续性与故事板边界登记。
 - 2026-07-10：完成 awesome Phase 8 摄影、电影、人物与场景交叉验证登记。
+- 2026-07-10：完成 awesome Phase 9 游戏资产、动画主视觉、像素艺术和等距微缩世界登记。
