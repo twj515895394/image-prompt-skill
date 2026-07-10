@@ -1,6 +1,12 @@
 # Composition & Shot Library
 
-当任务需要具体景别、机位、构图模板、主体占比、多人构图或镜头方案库时读取本分类。
+当任务需要具体景别、机位、构图模板、主体占比、多人构图、页面版式或资产交付方案时读取本分类。
+
+## 游戏资产交付类型
+
+当用户需要游戏角色、场景、道具、图标、精灵图、贴纸表、Key Visual、资产板、2D / 3D 对照或等距地图，并需要先判断交付形态时，读取：
+
+- `game-asset-presentation-types.md`
 
 ## 漫画分格与页面版式
 
@@ -27,5 +33,6 @@
 - 站位、动线和跨镜方向由 `../../controls/spatial-blocking/` 负责；
 - 海报文字与图像层级进入 `../../styles/graphic-design/`；
 - 漫画视觉语言进入 `../../styles/comic-manhwa/`；
+- 游戏资产的具体媒介实现进入 anime、illustration、3d-rendering 等 style；
 - 故事板任务流程和输出结构由 `../../tasks/storyboard-assets/playbook.md` 负责；
 - 本索引不重复叶子正文。
