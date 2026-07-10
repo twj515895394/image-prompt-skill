@@ -14,79 +14,72 @@
 
 | Phase | 内容 | 状态 | 主要产物或说明 |
 |---|---|---|---|
-| 0 | 来源治理与执行基线 | 已完成 | SOURCES、两份来源审计、验证模板、隔离验证 |
-| 1 | 通用镜头、电影光影、电影画面语言 | 已完成 | 4 个基础叶子、4 个索引路由、批次验证 |
-| 2 | 人物选择器、Prompt、参考图能力 | 已完成 | 5 个现有叶子增补；3 项重复候选不新建 |
-| 3 | 角色、场景、分镜任务能力 | 已完成 | 3 个新叶子、3 个 Playbook、3 个索引更新 |
-| 4 | 写真、女友感、综合风格拆分 | 已完成 | 更新生活化纪实摄影；不新增 3 类重复万能页 |
-| 5 | 产品营销与电商主图 | 已完成 | 5 个产品视觉叶子、5 个索引更新、抽样和验证 |
-| 6 | 海报、文字和信息图 | 已完成 | 3 个图文设计叶子、2 个索引更新、抽样和验证 |
-| 7 | 漫画、故事板与多格连续性 | 待执行 | 漫画风格、版式和连续性知识 |
+| 0 | 来源治理与执行基线 | 已完成 | SOURCES、来源审计、验证模板和隔离验证 |
+| 1 | 通用镜头、电影光影、电影画面语言 | 已完成 | 4 个基础叶子和路由验证 |
+| 2 | 人物选择器、Prompt、参考图能力 | 已完成 | 5 个现有叶子增补；重复候选不新建 |
+| 3 | 角色、场景、分镜任务能力 | 已完成 | 身份、空间、故事板类型与 Playbook 增补 |
+| 4 | 写真、女友感、综合风格拆分 | 已完成 | 更新生活化纪实摄影和迁移决策 |
+| 5 | 产品营销与电商主图 | 已完成 | 5 个产品视觉叶子和验证 |
+| 6 | 海报、文字和信息图 | 已完成 | 3 个图文设计叶子和验证 |
+| 7 | 漫画、故事板与多格连续性 | 已完成 | 3 个漫画连续性叶子和故事板边界更新 |
 | 8 | 摄影、电影、人物与场景交叉验证 | 待执行 | 验证并补强 Phase 1–4 |
 | 9 | 插画、3D、游戏和长尾类别 | 条件启动 | 仅在真实需求与多案例支持下执行 |
-| 10 | 自动检查、回归和临时区清理 | 待执行 | 检查脚本、回归报告、临时区清理 |
+| 10 | 自动检查、回归和临时区清理 | 待执行 | 检查脚本、回归报告和临时区清理 |
 
-## Phase 0–4 执行摘要
+## Phase 0–6 执行摘要
 
-- [x] 建立来源治理、许可策略、验证模板和临时区隔离基线
-- [x] 补齐通用镜头、电影光影、电影色调和 film still
-- [x] 增补发型、表情、微表情、单图输入和 Prompt 反推
-- [x] 补齐角色身份、空间调度、故事板类型和三类资产 Playbook
-- [x] 将亲近关系写真并入生活化纪实摄影唯一真源
-- [x] 不建立妆容、基础 Prompt、人物写真和综合风格重复万能页
+- [x] 建立来源治理、许可策略和验证基线
+- [x] 完成用户整理资料 Phase 1–4 的迁移、去重与边界收敛
+- [x] 完成产品营销与电商主图能力
+- [x] 完成海报、文字与信息图能力
 
-## Phase 5 执行摘要
-
-- [x] 抽样产品营销、电商、食品、饮料、手办和爆炸图案例
-- [x] 新增产品展示类型、Hero 构图、棚拍灯光、产品摄影和 3D 可视化
-- [x] 更新 object-product、composition-camera、lighting-color、photography 和 3D 索引
-- [x] 区分真实产品摄影与 CGI 结构展示
-- [x] 完成来源、许可和加载预算验证
-
-## Phase 6 执行记录
+## Phase 7 执行记录
 
 ### 抽样与审计
 
-- [x] 覆盖 Poster / Flyer、YouTube Thumbnail、Social Media Post
-- [x] 覆盖 Infographic / Edu Visual、Text / Typography、Diagram / Chart
-- [x] 覆盖品牌提案板、流程、时间线、对比、数据卡片和社交长图
-- [x] 创建 `docs/source-audits/awesome-gpt-image-2-poster-typography-infographic-sampling.md`
+- [x] 覆盖黑白日漫、彩色韩漫、条漫和美式动作漫画
+- [x] 覆盖四格、对话页、动作页、故事板草稿和多格连续性
+- [x] 覆盖对白框、旁白框、拟声词和跨格累计状态
+- [x] 创建 `docs/source-audits/awesome-gpt-image-2-comic-storyboard-sampling.md`
 
 ### 新增正式叶子
 
-- [x] `references/libraries/composition-shot/poster-layout-types.md`
-- [x] `references/styles/graphic-design/text-image-hierarchy.md`
-- [x] `references/styles/graphic-design/infographic-visual-language.md`
+- [x] `references/libraries/composition-shot/comic-panel-layouts.md`
+- [x] `references/styles/comic-manhwa/sequential-comic-language.md`
+- [x] `references/controls/identity-consistency/multi-panel-continuity.md`
 
-### 更新索引
+### 更新
 
-- [x] composition-shot
-- [x] graphic-design
+- [x] composition-shot index
+- [x] comic-manhwa index
+- [x] identity-consistency index
+- [x] storyboard-assets Playbook
 
 ### 关键决策
 
-- [x] YouTube 缩略图并入海报版式，不新增独立 style
-- [x] 品牌提案板并入信息图和模块化版式
-- [x] 不沉淀具体字体长名单
-- [x] 不扩展 UI 任务体系
-- [x] 精确长文本优先后期排版或局部文字编辑
-- [x] 未提供数据时禁止虚构精确数值
+- [x] 成品漫画页与制作型故事板明确分离
+- [x] 四格并入漫画版式，不新增独立叶子
+- [x] 对白与拟声词并入漫画视觉语言和图文层级
+- [x] 多格连续性使用输入—变化—输出状态模型
+- [x] 伤痕、道具损坏和服装破损作为累计状态
+- [x] 单幅漫画插画不默认加载分格与多格连续性
 
 ### 验证
 
-- [x] 人物海报、产品发布海报和视频缩略图可正确命中
-- [x] 流程、对比、时间线和数据型信息图可正确选择结构
-- [x] 无文字电影剧照不误加载图文设计叶子
+- [x] 黑白动作漫画、彩色条漫和四格短篇可正确命中
+- [x] 制作型故事板不会默认加载漫画视觉语言
+- [x] 道具、伤痕、位置和对白说话者可跨格继承
 - [x] 默认加载预算未突破
-- [x] 创建 `docs/source-audits/awesome-gpt-image-2-poster-typography-infographic-validation.md`
+- [x] 创建 `docs/source-audits/awesome-gpt-image-2-comic-storyboard-validation.md`
 - [x] 更新 `references/SOURCES.md`
 
 ## 批次提交说明
 
-当前 GitHub Contents 写入接口会按文件形成提交。后续具备 Git Tree / Commit API 时，优先让每个正式知识批次形成一个逻辑提交；如工具能力不支持，则在进度与验证文档中记录同批提交范围。
+当前 GitHub Contents 写入接口会按文件形成提交。各批次通过抽样、验证和进度文档记录逻辑提交范围。
 
 ## 最近更新
 
-- 2026-07-10：Phase 0–4 完成用户整理资料的正式迁移、去重与边界收敛。
-- 2026-07-10：Phase 5 完成 `awesome-gpt-image-2` 产品营销与电商主图抽样，新增展示、构图、灯光、摄影和 3D 可视化五个叶子。
-- 2026-07-10：Phase 6 完成海报、文字与信息图抽样，新增版式、图文层级和信息结构三个叶子。
+- 2026-07-10：Phase 0–4 完成用户资料迁移与边界收敛。
+- 2026-07-10：Phase 5 完成产品营销与电商主图。
+- 2026-07-10：Phase 6 完成海报、文字与信息图。
+- 2026-07-10：Phase 7 完成漫画分格、漫画视觉语言、多格连续性和故事板边界补强。
