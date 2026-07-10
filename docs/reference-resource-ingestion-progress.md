@@ -22,56 +22,64 @@
 | 5 | 产品营销与电商主图 | 已完成 | 5 个产品视觉叶子和验证 |
 | 6 | 海报、文字和信息图 | 已完成 | 3 个图文设计叶子和验证 |
 | 7 | 漫画、故事板与多格连续性 | 已完成 | 3 个漫画连续性叶子和故事板边界更新 |
-| 8 | 摄影、电影、人物与场景交叉验证 | 待执行 | 验证并补强 Phase 1–4 |
-| 9 | 插画、3D、游戏和长尾类别 | 条件启动 | 仅在真实需求与多案例支持下执行 |
+| 8 | 摄影、电影、人物与场景交叉验证 | 已完成 | 新增环境人像；三条人物摄影路线边界收敛 |
+| 9 | 插画、3D、游戏和长尾类别 | 待评估 | 仅在真实需求与多案例支持下启动 |
 | 10 | 自动检查、回归和临时区清理 | 待执行 | 检查脚本、回归报告和临时区清理 |
 
-## Phase 0–6 执行摘要
+## Phase 0–7 执行摘要
 
 - [x] 建立来源治理、许可策略和验证基线
 - [x] 完成用户整理资料 Phase 1–4 的迁移、去重与边界收敛
 - [x] 完成产品营销与电商主图能力
 - [x] 完成海报、文字与信息图能力
+- [x] 完成漫画分格、漫画视觉语言和多格连续性能力
 
-## Phase 7 执行记录
+## Phase 8 执行记录
 
-### 抽样与审计
+### 交叉验证范围
 
-- [x] 覆盖黑白日漫、彩色韩漫、条漫和美式动作漫画
-- [x] 覆盖四格、对话页、动作页、故事板草稿和多格连续性
-- [x] 覆盖对白框、旁白框、拟声词和跨格累计状态
-- [x] 创建 `docs/source-audits/awesome-gpt-image-2-comic-storyboard-sampling.md`
+- [x] Photography、Portrait、Lifestyle、Cinematic
+- [x] Environment、Character、Travel、Fashion Editorial
+- [x] 对照 Phase 1–4 的摄影、电影、身份、空间和资产 Playbook
 
 ### 新增正式叶子
 
-- [x] `references/libraries/composition-shot/comic-panel-layouts.md`
-- [x] `references/styles/comic-manhwa/sequential-comic-language.md`
-- [x] `references/controls/identity-consistency/multi-panel-continuity.md`
+- [x] `references/styles/photography/environmental-editorial-portrait.md`
 
 ### 更新
 
-- [x] composition-shot index
-- [x] comic-manhwa index
-- [x] identity-consistency index
-- [x] storyboard-assets Playbook
+- [x] `references/styles/photography/index.md`
+- [x] `references/styles/photography/lifestyle-candid-photography.md`
+- [x] `references/styles/cinematic/film-still-language.md`
 
-### 关键决策
+### 关键结论
 
-- [x] 成品漫画页与制作型故事板明确分离
-- [x] 四格并入漫画版式，不新增独立叶子
-- [x] 对白与拟声词并入漫画视觉语言和图文层级
-- [x] 多格连续性使用输入—变化—输出状态模型
-- [x] 伤痕、道具损坏和服装破损作为累计状态
-- [x] 单幅漫画插画不默认加载分格与多格连续性
+- [x] 生活化纪实：非摆拍、日常事件和关系视角
+- [x] 环境编辑写真：适度摆姿、人物身份与地点关系
+- [x] 电影剧照：剧情事件、关系变化和情绪落点
+- [x] 三条路线按任务机制区分，不按“高级感”区分
+- [x] 旅行、职业、城市街拍不建立题材型重复叶子
+- [x] 角色身份与场景规划经验证后保持原结构
+- [x] 不新增人物场景融合万能 control
 
-### 验证
+### 审计与验证
 
-- [x] 黑白动作漫画、彩色条漫和四格短篇可正确命中
-- [x] 制作型故事板不会默认加载漫画视觉语言
-- [x] 道具、伤痕、位置和对白说话者可跨格继承
+- [x] 创建 `docs/source-audits/awesome-gpt-image-2-photography-cinematic-human-environment-cross-validation.md`
+- [x] 创建 `docs/source-audits/awesome-gpt-image-2-photography-cinematic-human-environment-validation.md`
+- [x] 伴侣生活照、旅行人像、职业肖像和剧情剧照路由可区分
+- [x] 角色资产和场景资产不误加载摄影 style
 - [x] 默认加载预算未突破
-- [x] 创建 `docs/source-audits/awesome-gpt-image-2-comic-storyboard-validation.md`
 - [x] 更新 `references/SOURCES.md`
+
+## Phase 9 启动条件
+
+Phase 9 不自动全部执行。每个插画、3D、游戏或长尾类别需要同时满足：
+
+1. 存在明确用户需求或高频任务；
+2. 至少有多个不同案例支持；
+3. 能拆成模型无关的线条、材质、渲染、透视或设计规则；
+4. 与现有 styles 不重复；
+5. 有清晰读取条件和回归样例。
 
 ## 批次提交说明
 
@@ -82,4 +90,5 @@
 - 2026-07-10：Phase 0–4 完成用户资料迁移与边界收敛。
 - 2026-07-10：Phase 5 完成产品营销与电商主图。
 - 2026-07-10：Phase 6 完成海报、文字与信息图。
-- 2026-07-10：Phase 7 完成漫画分格、漫画视觉语言、多格连续性和故事板边界补强。
+- 2026-07-10：Phase 7 完成漫画、多格连续性和故事板边界补强。
+- 2026-07-10：Phase 8 完成摄影、电影、人物与场景交叉验证，新增环境人像并收敛三条人物摄影路线。
