@@ -1,0 +1,41 @@
+name: Reference Integrity
+
+on:
+  pull_request:
+    paths:
+      - "SKILL.md"
+      - "references/**"
+      - "assets/templates/**"
+      - "docs/**"
+      - "scripts/check_reference_integrity.py"
+      - ".github/workflows/reference-integrity.yml"
+  push:
+    branches:
+      - main
+      - refactor/reference-architecture-v2
+    paths:
+      - "SKILL.md"
+      - "references/**"
+      - "assets/templates/**"
+      - "docs/**"
+      - "scripts/check_reference_integrity.py"
+      - ".github/workflows/reference-integrity.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reference-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check Reference integrity
+        run: python scripts/check_reference_integrity.py
