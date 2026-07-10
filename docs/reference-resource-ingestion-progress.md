@@ -14,8 +14,8 @@
 
 | Phase | 内容 | 状态 | 主要产物或说明 |
 |---|---|---|---|
-| 0 | 来源治理与执行基线 | 进行中 | 已建立 SOURCES、两份来源审计、统一验证模板；待完成隔离核验记录 |
-| 1 | 通用镜头、电影光影、电影画面语言 | 待执行 | 计划新增或增补 3–4 个基础叶子 |
+| 0 | 来源治理与执行基线 | 已完成 | SOURCES、两份来源审计、验证模板、隔离验证 |
+| 1 | 通用镜头、电影光影、电影画面语言 | 已完成 | 4 个基础叶子、4 个索引路由、批次验证 |
 | 2 | 人物选择器、Prompt、参考图能力 | 待执行 | 以更新现有叶子为主 |
 | 3 | 角色、场景、分镜任务能力 | 待执行 | Playbook、controls 与必要 library 增补 |
 | 4 | 写真、女友感、综合风格拆分 | 待执行 | 摄影风格增补与迁移结论 |
@@ -37,12 +37,34 @@
 - [x] 创建本进度台账
 - [x] 明确用户资料和外部资源的许可、署名和使用边界
 - [x] 明确正式 Reference 不得依赖临时摄取目录
+- [x] 核对 `SKILL.md` 与 `references/index.md` 未引用 `docs/source-staging/`
+- [x] 创建 `docs/source-audits/phase-0-source-governance-validation.md`
 
-### 待完成
+## Phase 1 执行记录
 
-- [ ] 核对 `SKILL.md` 与 `references/**/*.md` 不引用 `docs/source-staging/`
-- [ ] 记录 Phase 0 验证结果
-- [ ] 将 Phase 0 状态改为已完成
+### 新增叶子
+
+- [x] `references/controls/composition-camera/shot-angle-lens-selection.md`
+- [x] `references/controls/lighting-color/cinematic-lighting-patterns.md`
+- [x] `references/libraries/lighting-color/cinematic-color-palettes.md`
+- [x] `references/styles/cinematic/film-still-language.md`
+
+### 更新索引
+
+- [x] `references/controls/composition-camera/index.md`
+- [x] `references/controls/lighting-color/index.md`
+- [x] `references/libraries/lighting-color/index.md`
+- [x] `references/styles/cinematic/index.md`
+
+### 验证
+
+- [x] 普通人物写真只命中镜头控制，不误加载电影风格
+- [x] 电影剧照按需联动 style、camera、lighting 和 palette
+- [x] 色调选择器可独立命中
+- [x] 办公室普通混合光继续优先命中专用叶子
+- [x] 角色三视图等相邻任务不误加载电影叶子
+- [x] 默认加载预算未突破
+- [x] 创建 `docs/source-audits/user-curated-2026-07-10-phase-1-validation.md`
 
 ## 批次提交说明
 
@@ -50,4 +72,5 @@
 
 ## 最近更新
 
-- 2026-07-10：启动 Phase 0，完成来源登记、两类来源审计、验证模板和进度台账。
+- 2026-07-10：Phase 0 完成，建立来源治理、许可策略、验证模板和临时区隔离基线。
+- 2026-07-10：Phase 1 完成，新增通用镜头、电影灯光、电影色调和电影画面语言四个叶子并接通路由。
