@@ -16,7 +16,14 @@ from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME_ROOTS = [ROOT / "SKILL.md", ROOT / "references", ROOT / "assets" / "templates"]
-SCAN_ROOTS = [ROOT / "SKILL.md", ROOT / "references", ROOT / "assets" / "templates", ROOT / "docs"]
+SCAN_ROOTS = [
+    ROOT / "README.md",
+    ROOT / "AGENTS.md",
+    ROOT / "SKILL.md",
+    ROOT / "references",
+    ROOT / "assets" / "templates",
+    ROOT / "docs",
+]
 
 MARKDOWN_LINK_RE = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 INLINE_MD_RE = re.compile(r"`([^`\n]*?\.md(?:#[^`\n]*)?)`")
@@ -50,6 +57,8 @@ FORBIDDEN_LEGACY_PATHS = (
 )
 
 REQUIRED_PATHS = (
+    "README.md",
+    "AGENTS.md",
     "SKILL.md",
     "references/index.md",
     "references/inputs/index.md",
