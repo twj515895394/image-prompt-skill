@@ -17,7 +17,7 @@
 | 0 | 来源治理与执行基线 | 已完成 | SOURCES、两份来源审计、验证模板、隔离验证 |
 | 1 | 通用镜头、电影光影、电影画面语言 | 已完成 | 4 个基础叶子、4 个索引路由、批次验证 |
 | 2 | 人物选择器、Prompt、参考图能力 | 已完成 | 5 个现有叶子增补；3 项重复候选不新建 |
-| 3 | 角色、场景、分镜任务能力 | 待执行 | Playbook、controls 与必要 library 增补 |
+| 3 | 角色、场景、分镜任务能力 | 已完成 | 3 个新叶子、3 个 Playbook、3 个索引更新 |
 | 4 | 写真、女友感、综合风格拆分 | 待执行 | 摄影风格增补与迁移结论 |
 | 5 | 产品营销与电商主图 | 待执行 | awesome 首批 3–5 个高价值叶子 |
 | 6 | 海报、文字和信息图 | 待执行 | 平面视觉、文字层级和版式知识 |
@@ -36,50 +36,49 @@
 
 ## Phase 1 执行记录
 
-### 新增叶子
-
-- [x] `references/controls/composition-camera/shot-angle-lens-selection.md`
-- [x] `references/controls/lighting-color/cinematic-lighting-patterns.md`
-- [x] `references/libraries/lighting-color/cinematic-color-palettes.md`
-- [x] `references/styles/cinematic/film-still-language.md`
-
-### 更新索引
-
-- [x] composition-camera
-- [x] lighting-color control
-- [x] lighting-color library
-- [x] cinematic style
-
-### 验证
-
-- [x] 创建 `docs/source-audits/user-curated-2026-07-10-phase-1-validation.md`
-- [x] 通用与专用镜头 / 光线路由可区分
+- [x] 新增通用镜头、电影灯光、电影色调和 film still 四个叶子
+- [x] 更新 composition-camera、lighting-color 和 cinematic 索引
+- [x] 创建 Phase 1 验证文档
+- [x] 通用与专用路由可区分
 - [x] 默认加载预算未突破
 
 ## Phase 2 执行记录
 
-### 更新现有叶子
+- [x] 更新发型、表情、微表情、单图输入和 Prompt 反推
+- [x] 不新增重复妆容、基础 Prompt 和人物外貌万能页
+- [x] 分离表情选择与自然发生机制
+- [x] 分离单图输入与反推任务职责
+- [x] 创建 Phase 2 验证文档
 
-- [x] `references/libraries/human/hairstyle-selector.md`
-- [x] `references/libraries/human/expression-selector.md`
-- [x] `references/controls/pose-action/lifestyle-micro-expression.md`
-- [x] `references/inputs/single-image-reference.md`
-- [x] `references/tasks/prompt-reverse-engineering/playbook.md`
+## Phase 3 执行记录
 
-### 查重后不新增
+### 新增叶子
 
-- [x] 妆容选择器：现有叶子已完整覆盖
-- [x] 基础 Prompt 结构：不建立第二套万能输出真源
-- [x] 人物外貌万能页：选择器部分已有归属，写真风格延后 Phase 4
+- [x] `references/controls/identity-consistency/character-identity-anchors.md`
+- [x] `references/controls/spatial-blocking/staging-and-direction-control.md`
+- [x] `references/libraries/composition-shot/storyboard-board-types.md`
+
+### 更新 Playbook
+
+- [x] `references/tasks/character-assets/playbook.md`
+- [x] `references/tasks/scene-assets/playbook.md`
+- [x] `references/tasks/storyboard-assets/playbook.md`
+
+### 更新索引
+
+- [x] identity-consistency
+- [x] spatial-blocking
+- [x] composition-shot
 
 ### 验证
 
-- [x] 发型可独立命中，不默认加载妆容与表情
-- [x] 表情选择与微表情发生机制分离
-- [x] 静态终态与视频变化过程分离
-- [x] 单图输入与反推任务职责分离
-- [x] 风格变量与原图内容变量分离
-- [x] 创建 `docs/source-audits/user-curated-2026-07-10-phase-2-validation.md`
+- [x] 角色身份锚点与人物选项分离
+- [x] 场景空间原点、三角站位和动线可执行
+- [x] 控制型与风格型故事板边界清楚
+- [x] 超过 12 镜优先拆分 Pack
+- [x] 相邻单图任务不误加载资产控制叶子
+- [x] 默认加载预算未突破
+- [x] 创建 `docs/source-audits/user-curated-2026-07-10-phase-3-validation.md`
 - [x] 更新 `references/SOURCES.md`
 
 ## 批次提交说明
@@ -91,3 +90,4 @@
 - 2026-07-10：Phase 0 完成，建立来源治理、许可策略、验证模板和临时区隔离基线。
 - 2026-07-10：Phase 1 完成，新增通用镜头、电影灯光、电影色调和电影画面语言四个叶子并接通路由。
 - 2026-07-10：Phase 2 完成，增补发型、表情、微表情、单图输入和 Prompt 反推能力，并避免新增重复万能叶子。
+- 2026-07-10：Phase 3 完成，补齐角色身份、空间调度、故事板类型和三类资产 Playbook。
