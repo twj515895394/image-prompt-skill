@@ -17,12 +17,13 @@
 ## 用户整理资料（2026-07-10）
 
 - 来源名称：仓库维护者整理的生图知识资料，共 15 份 Markdown
-- 临时位置：`../docs/source-staging/user-curated-2026-07-10/`
 - 来源审计：`../docs/source-audits/user-curated-2026-07-10.md`
+- 最终迁移映射：`../docs/source-audits/user-curated-2026-07-10-final-mapping.md`
 - 接收日期：2026-07-10
 - 使用边界：由仓库维护者直接提供；第三方来源证据仍需逐项核实
 - 使用方式：查重、结构提炼、规则改写、现有叶子增补和必要新叶子提炼
-- 当前状态：Phase 1–4 已完成
+- 清理状态：15 份原始资料已完成迁移或明确不采用；临时 `source-staging` 已在 Phase 10 删除，原始内容继续由 Git 历史追踪
+- 当前状态：Phase 1–4 已完成并最终收口
 
 ### Phase 1
 
@@ -137,8 +138,6 @@
 
 验证：`../docs/source-audits/awesome-gpt-image-2-photography-cinematic-human-environment-validation.md`
 
-处理说明：新增环境人像这一真实空档；人物身份、空间调度、角色资产和场景资产经外部案例验证后保持原结构，不新增重复叶子。
-
 ### Phase 9：插画、3D、游戏资产与长尾分类
 
 抽样：`../docs/source-audits/awesome-gpt-image-2-long-tail-game-illustration-sampling.md`
@@ -163,14 +162,18 @@
 
 处理说明：Phase 9 按条件启动，只沉淀游戏资产交付、动画主视觉、像素艺术和等距微缩世界。Watercolor、Oil Painting、Sketch / Line Art、Ink / Chinese Style、Chibi、Cyberpunk 和 App / Web Design 继续保留在审计层。
 
+## Phase 10：完整性检查与清理
+
+- 自动检查脚本：`../scripts/check_reference_integrity.py`
+- GitHub Actions：`../.github/workflows/reference-integrity.yml`
+- 最终行为回归：`../docs/reference-behavior-regression-final.md`
+- 最终验收：`../docs/source-audits/phase-10-final-validation.md`
+
 ---
 
 ## 变更记录
 
 - 2026-07-10：建立来源登记基线。
 - 2026-07-10：完成用户资料 Phase 1–4 登记。
-- 2026-07-10：完成 awesome Phase 5 产品视觉登记。
-- 2026-07-10：完成 awesome Phase 6 图文设计登记。
-- 2026-07-10：完成 awesome Phase 7 漫画、多格连续性与故事板边界登记。
-- 2026-07-10：完成 awesome Phase 8 摄影、电影、人物与场景交叉验证登记。
-- 2026-07-10：完成 awesome Phase 9 游戏资产、动画主视觉、像素艺术和等距微缩世界登记。
+- 2026-07-10：完成 awesome Phase 5–9 外部知识登记。
+- 2026-07-10：Phase 10 建立自动检查和 CI，固化最终映射并删除临时摄取目录。
