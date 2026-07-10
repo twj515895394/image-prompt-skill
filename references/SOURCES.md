@@ -33,7 +33,7 @@
 - 使用方式：查重、结构提炼、规则改写、现有叶子增补、必要的新叶子提炼
 - 直接引用策略：来源不清晰时不直接搬运完整案例或高度相似文案
 - 修改说明：正式内容均经过拆分、重组和中文规则化表达，不把原始综合文件直接作为运行时叶子
-- 当前状态：Phase 1–2 已完成，Phase 3–4 待处理
+- 当前状态：Phase 1–3 已完成，Phase 4 待处理
 
 ### Phase 1 对应正式 Reference
 
@@ -53,6 +53,22 @@
 - `tasks/prompt-reverse-engineering/playbook.md`
 
 验证：`../docs/source-audits/user-curated-2026-07-10-phase-2-validation.md`
+
+### Phase 3 对应正式 Reference
+
+新增：
+
+- `controls/identity-consistency/character-identity-anchors.md`
+- `controls/spatial-blocking/staging-and-direction-control.md`
+- `libraries/composition-shot/storyboard-board-types.md`
+
+更新：
+
+- `tasks/character-assets/playbook.md`
+- `tasks/scene-assets/playbook.md`
+- `tasks/storyboard-assets/playbook.md`
+
+验证：`../docs/source-audits/user-curated-2026-07-10-phase-3-validation.md`
 
 ### 已查重但未形成新叶子
 
@@ -80,3 +96,4 @@
 
 - 2026-07-10：建立来源登记基线，登记用户整理资料和 `awesome-gpt-image-2`。
 - 2026-07-10：登记用户资料 Phase 1–2 的正式 Reference、验证文档和未新增叶子结论。
+- 2026-07-10：登记用户资料 Phase 3 的角色身份、空间调度、故事板类型和三类任务 Playbook 更新。
