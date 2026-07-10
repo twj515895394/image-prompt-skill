@@ -3,6 +3,8 @@ name: Reference Integrity
 on:
   pull_request:
     paths:
+      - "README.md"
+      - "AGENTS.md"
       - "SKILL.md"
       - "references/**"
       - "assets/templates/**"
@@ -14,6 +16,8 @@ on:
       - main
       - refactor/reference-architecture-v2
     paths:
+      - "README.md"
+      - "AGENTS.md"
       - "SKILL.md"
       - "references/**"
       - "assets/templates/**"
