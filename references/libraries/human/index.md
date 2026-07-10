@@ -28,6 +28,6 @@
 
 ## 边界
 
-- 姿态、重心和动作控制归入 `controls/pose-action/`
-- 微表情如何自然发生归入 `controls/pose-action/lifestyle-micro-expression.md`
+- 姿态、重心和动作控制归入 `../../controls/pose-action/index.md`
+- 微表情如何自然发生归入 `../../controls/pose-action/lifestyle-micro-expression.md`
 - 本目录只保存可选择的具体资料和选择器
