@@ -50,16 +50,27 @@ scripts/check_reference_integrity.py
 python scripts/check_reference_integrity.py
 ```
 
-### 远端执行状态
+工作流同时上传 `reference-integrity-report` artifact，失败时可直接下载完整报告。
 
-截至本验收记录写入时，GitHub Connector 未返回该分支的 Actions workflow run 或 commit status。
+### 远端执行结果
 
-因此本文件不虚构“CI 已通过”。当前可以确认的是：
+GitHub Actions 已实际执行并通过：
 
-- 工作流和检查脚本已经提交；
-- PR 当前可合并；
-- 仓库级人工结构审计和路由回归已完成；
-- 仓库启用 Actions 或工作流首次被授权后，脚本将自动执行。
+```text
+Workflow：Reference Integrity
+Run number：54
+Run id：29073563319
+Head SHA：99d204ba35e1a91aff14cf6df8c5b7a9db79487d
+Status：completed
+Conclusion：success
+```
+
+首次执行发现并修复：
+
+- 遗留 `references/appendix/index.md`；
+- `references/libraries/human/index.md` 中微表情控制页的错误相对路径。
+
+修复后再次执行，完整性检查通过。
 
 ## 3. 旧路径检查范围
 
@@ -199,7 +210,7 @@ docs/reference-behavior-regression-final.md
 Phase 10 实施状态：已完成
 自动检查实现：已完成
 GitHub Actions 配置：已完成
-远端 CI 运行记录：当前未返回，未声称已通过
+远端 Reference Integrity CI：通过
 人工结构审计：通过
 行为路由回归：28 / 28 通过
 临时区清理：完成
