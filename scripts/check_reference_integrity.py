@@ -59,6 +59,8 @@ REQUIRED_PATHS = (
     "references/styles/index.md",
     "references/diagnostics/index.md",
     "references/SOURCES.md",
+    "assets/templates/mode-quick-output-contract.md",
+    "assets/templates/mode-interactive-output-contract.md",
 )
 
 IGNORED_DUPLICATE_BASENAMES = {"index.md", "playbook.md", "README.md"}
