@@ -2,7 +2,7 @@
 
 ## 用途
 
-本文件跟踪 `docs/reference-resource-ingestion-implementation-plan.md` 的实际执行状态，以及实施完成后的运行合同收敛变更。
+本文件跟踪 `docs/reference-resource-ingestion-implementation-plan.md` 的实际执行状态。
 
 状态统一使用：
 
@@ -26,55 +26,67 @@
 | 9 | 插画、3D、游戏和长尾类别 | 已完成 | 条件启动 4 项高价值能力，其余保留审计层 |
 | 10 | 自动检查、回归和临时区清理 | 已完成 | 检查脚本、GitHub Actions、28 条回归和临时区清理 |
 
-## Phase 0–10 执行摘要
+## Phase 0–9 执行摘要
 
 - [x] 建立来源治理、许可策略和验证基线
 - [x] 完成用户整理资料 Phase 1–4 的迁移、去重与边界收敛
-- [x] 完成产品、电商、图文、漫画、摄影和游戏视觉能力
-- [x] 完成自动检查、行为回归、最终映射和临时区清理
-- [x] Reference Integrity CI 远端运行通过
+- [x] 完成产品营销与电商主图能力
+- [x] 完成海报、文字与信息图能力
+- [x] 完成漫画分格、漫画视觉语言和多格连续性能力
+- [x] 完成摄影、电影、人物与场景交叉验证
+- [x] 条件启动并完成游戏资产、动画主视觉、像素艺术和等距微缩能力
 
-## 实施完成后的运行合同收敛
+## Phase 10 执行记录
 
-### 快速模式
+### 自动检查
 
-- [x] 默认模式，用户未明确要求讨论时自动进入
-- [x] 零追问、零人工确认
-- [x] 信息不足时自动补全
-- [x] 多图冲突时自动分配主辅参考职责
-- [x] 互斥目标自动裁决为一个主方向
-- [x] 不读取结构化任务模板
-- [x] 单 Prompt 只输出最终 Prompt 正文
-- [x] 不显示标题、概述、限制项说明、补全说明或方向摘要
-- [x] 资产类任务只输出必要 Prompt Pack，可用极简编号分隔
+- [x] 新增 `scripts/check_reference_integrity.py`
+- [x] 检查必需入口、相对链接和 index 目标路径
+- [x] 检查运行时对 source-staging 和旧目录的违规引用
+- [x] 检查旧目录残留
+- [x] 检查空叶子、标题缺失、明显重复文件名和 H1
+- [x] 检查临时摄取目录是否仍包含文件
 
-### 交互模式
+### GitHub Actions
 
-- [x] 只有用户明确要求讨论、脑暴、逐步设计或先提问时进入
-- [x] 每次只问一个关键问题，并给出推荐答案
-- [x] 用户要求直接出最终版时立即停止追问
-- [x] 最终按需读取任务结构化模板
+- [x] 新增 `.github/workflows/reference-integrity.yml`
+- [x] 支持 pull_request、push 和 workflow_dispatch
+- [x] 使用 Python 3.11 和标准库执行完整性脚本
+- [x] Reference Integrity CI 已通过
 
-### 新增与更新
+### 行为回归
 
-新增：
+- [x] 新增 `docs/reference-behavior-regression-final.md`
+- [x] 覆盖 28 条输入、任务、产品、图文、漫画、摄影、游戏和诊断路由
+- [x] 28 / 28 仓库级人工路由审计通过
+- [x] 默认加载预算未突破
+- [x] 相邻能力反例未发生误加载
 
-- `assets/templates/mode-quick-output-contract.md`
-- `assets/templates/mode-interactive-output-contract.md`
-- `docs/quick-interactive-mode-contract-validation.md`
+### 临时区清理
 
-更新：
+- [x] 新增 `docs/source-audits/user-curated-2026-07-10-final-mapping.md`
+- [x] 15 / 15 用户资料完成最终去向登记
+- [x] 删除 raw 下 15 份原始 Markdown
+- [x] 删除临时 README 和 ingestion-map
+- [x] 共删除 17 份临时文件
+- [x] 更新 `references/SOURCES.md`，不再依赖临时路径
+- [x] 原始内容继续由 Git 历史追踪
 
-- `SKILL.md`
-- `assets/README.md`
-- `assets/templates/finished-image-template.md`
-- `scripts/check_reference_integrity.py`
+### 最终验收
 
-### 验证
+- [x] 新增 `docs/source-audits/phase-10-final-validation.md`
+- [x] Phase 0–10 全部完成
+- [x] 后续知识扩充改为独立批次，不再追加本计划 Phase
 
-- [x] 快速模式与交互模式边界回归通过
-- [x] 两份 mode output contract 已列为必需架构路径
-- [x] Reference Integrity CI Run #71 通过
+## 交付后文档补全
+
+- [x] 新增根目录 `README.md`
+- [x] README 覆盖项目介绍、能力范围、运行模式、Reference 架构、目录结构、使用方式、自动检查和维护原则
+- [x] 新增根目录 `AGENTS.md`
+- [x] AGENTS 固化新资料的隔离、来源审计、查重、职责拆分、路由、验证、CI 和临时区清理流程
+- [x] 将 README 和 AGENTS 加入完整性检查必需入口
+- [x] 将 README 和 AGENTS 加入 GitHub Actions 触发范围
+- [x] Reference Integrity CI Run #79 通过
 
 ## 批次提交说明
 
@@ -82,6 +94,8 @@
 
 ## 最近更新
 
-- 2026-07-10：Phase 0–10 全部完成。
-- 2026-07-10：快速模式收敛为零人工干预、直接 Prompt 输出；交互模式保留单问题共创和结构化最终交付。
-- 2026-07-10：模式合同变更通过 Reference Integrity CI Run #71。
+- 2026-07-10：Phase 0–4 完成用户资料迁移与边界收敛。
+- 2026-07-10：Phase 5–9 完成外部高价值知识分批沉淀与交叉验证。
+- 2026-07-10：Phase 10 完成自动检查、28 条行为回归、最终迁移映射和临时摄取目录清理。
+- 2026-07-10：快速模式调整为零追问、零解释和纯 Prompt 输出，交互模式改为显式触发。
+- 2026-07-10：补齐 README 与 AGENTS，并将两者纳入完整性检查和 CI。
