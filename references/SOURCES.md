@@ -106,7 +106,7 @@
 - 使用方式：分类抽样、案例拆解、结构提炼、规则抽象、少量必要引用
 - 图片策略：不批量复制来源图片
 - 模型策略：剥离 GPT Image 2 专属营销描述和偶然写法，优先沉淀模型无关的视觉规律
-- 当前状态：Phase 5 已完成，Phase 6–9 待处理
+- 当前状态：Phase 5–6 已完成，Phase 7–9 待处理
 
 ### Phase 5：产品营销与电商主图
 
@@ -124,6 +124,20 @@
 
 处理说明：正式内容为代表案例的跨案例抽象和中文改写，未复制完整 Prompt、图片或具体品牌文案。
 
+### Phase 6：海报、文字与信息图
+
+抽样审计：`../docs/source-audits/awesome-gpt-image-2-poster-typography-infographic-sampling.md`
+
+新增正式 Reference：
+
+- `libraries/composition-shot/poster-layout-types.md`
+- `styles/graphic-design/text-image-hierarchy.md`
+- `styles/graphic-design/infographic-visual-language.md`
+
+验证：`../docs/source-audits/awesome-gpt-image-2-poster-typography-infographic-validation.md`
+
+处理说明：缩略图并入海报版式；精确长文本和复杂数据明确建议后期排版；未复制完整 Prompt、图片、品牌文案或来源标题。
+
 ---
 
 ## 变更记录
@@ -133,3 +147,4 @@
 - 2026-07-10：登记用户资料 Phase 3 的角色身份、空间调度、故事板类型和三类任务 Playbook 更新。
 - 2026-07-10：登记用户资料 Phase 4 的生活化纪实摄影增补和综合风格迁移决策。
 - 2026-07-10：登记 `awesome-gpt-image-2` Phase 5 产品营销与电商主图的抽样、五个正式叶子和验证结果。
+- 2026-07-10：登记 `awesome-gpt-image-2` Phase 6 海报、文字和信息图的抽样、三个正式叶子和验证结果。
