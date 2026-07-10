@@ -106,8 +106,23 @@
 - 使用方式：分类抽样、案例拆解、结构提炼、规则抽象、少量必要引用
 - 图片策略：不批量复制来源图片
 - 模型策略：剥离 GPT Image 2 专属营销描述和偶然写法，优先沉淀模型无关的视觉规律
-- 当前状态：待按实施计划 Phase 5–9 分批处理
-- 对应正式 Reference：各批次完成后逐项补充
+- 当前状态：Phase 5 已完成，Phase 6–9 待处理
+
+### Phase 5：产品营销与电商主图
+
+抽样审计：`../docs/source-audits/awesome-gpt-image-2-product-commerce-sampling.md`
+
+新增正式 Reference：
+
+- `libraries/object-product/product-display-types.md`
+- `controls/composition-camera/product-hero-composition.md`
+- `controls/lighting-color/product-studio-lighting.md`
+- `styles/photography/product-photography.md`
+- `styles/3d-rendering/product-visualization.md`
+
+验证：`../docs/source-audits/awesome-gpt-image-2-product-commerce-validation.md`
+
+处理说明：正式内容为代表案例的跨案例抽象和中文改写，未复制完整 Prompt、图片或具体品牌文案。
 
 ---
 
@@ -117,3 +132,4 @@
 - 2026-07-10：登记用户资料 Phase 1–2 的正式 Reference、验证文档和未新增叶子结论。
 - 2026-07-10：登记用户资料 Phase 3 的角色身份、空间调度、故事板类型和三类任务 Playbook 更新。
 - 2026-07-10：登记用户资料 Phase 4 的生活化纪实摄影增补和综合风格迁移决策。
+- 2026-07-10：登记 `awesome-gpt-image-2` Phase 5 产品营销与电商主图的抽样、五个正式叶子和验证结果。
