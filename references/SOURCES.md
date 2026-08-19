@@ -169,6 +169,18 @@
 - 最终行为回归：`../docs/reference-behavior-regression-final.md`
 - 最终验收：`../docs/source-audits/phase-10-final-validation.md`
 
+## 四区角色身份参考板（2026-08-19）
+
+- 来源名称：Higgsfield AI 公开角色参考图方法示例 + 用户在对话中确认的四区版式修订
+- 来源方式：用户提供公开帖子截图与文字摘录；原始帖子 URL 本次未提供
+- 来源审计：`../docs/source-audits/2026-08-four-panel-character-sheet.md`
+- 验证：`../docs/source-audits/2026-08-four-panel-character-sheet-validation.md`
+- 接收日期：2026-08-19
+- 许可证：未知
+- 使用方式：只进行结构抽象、规则重写和用户确认后的版式设计；不复制第三方图片与完整 Prompt
+- 正式 Reference：`tasks/character-assets/playbook.md`
+- 核心修订：默认 1920×1080、22% + 22% + 56%；只有第一列正面 Body Panel 去头，第二列必须保留完整后脑与背面全身但严格不露脸；右侧为中性 / 微笑两个等高 Close-up
+
 ---
 
 ## 变更记录
@@ -177,3 +189,4 @@
 - 2026-07-10：完成用户资料 Phase 1–4 登记。
 - 2026-07-10：完成 awesome Phase 5–9 外部知识登记。
 - 2026-07-10：Phase 10 建立自动检查和 CI，固化最终映射并删除临时摄取目录。
+- 2026-08-19：将四区角色身份参考板沉淀到 `character-assets`，并固定“仅第一列去头、第二列完整后脑”的默认规则。
