@@ -181,6 +181,36 @@
 - 正式 Reference：`tasks/character-assets/playbook.md`
 - 核心修订：默认 1920×1080、22% + 22% + 56%；只有第一列正面 Body Panel 去头，第二列必须保留完整后脑与背面全身但严格不露脸；右侧为中性 / 微笑两个等高 Close-up
 
+## 保真细节增强（2026-08-30）
+
+- 来源名称：南鸢 nuyoah 公开长文《MJ 人像磨皮感太重？这段 Prompt 能把真实纹理补回来》
+- 来源 URL：`https://x.com/nanyuan0412/status/2093512541108601334`
+- 长文 URL：`https://x.com/i/article/2093511468407050240`
+- 来源审计：`../docs/source-audits/2026-08-fidelity-detail-enhancement.md`
+- 验证：`../docs/source-audits/2026-08-fidelity-detail-enhancement-validation.md`
+- 最终映射：`../docs/source-audits/2026-08-fidelity-detail-enhancement-final-mapping.md`
+- 访问日期：2026-08-30
+- 许可证：未知
+- 使用方式：只进行结构抽象和规则重写；不复制完整 Prompt、图片或模型排名
+- 正式 Reference：`controls/realism-quality/fidelity-detail-enhancement.md`
+- 同步更新：`tasks/image-editing/playbook.md`、`tasks/image-to-image/playbook.md`
+- 核心修订：已有成片只补皮肤微观细节时走局部编辑；Prompt 必须同时写清允许增加、严格锁定和明确排除
+
+## 从零生成皮肤控制（2026-08-30）
+
+- 来源名称：南鸢 nuyoah 公开长文《为什么你加了「真实皮肤」，脸还是塑料感？》
+- 来源 URL：`https://x.com/nanyuan0412/status/2084451298016202976`
+- 长文 URL：`https://x.com/i/article/2083987738546888704`
+- 辅助来源：近远景皮肤密度帖、皮肤纹理与胶片颗粒分层帖
+- 来源审计：`../docs/source-audits/2026-08-generated-skin-control.md`
+- 验证：`../docs/source-audits/2026-08-generated-skin-control-validation.md`
+- 最终映射：`../docs/source-audits/2026-08-generated-skin-control-final-mapping.md`
+- 访问日期：2026-08-30
+- 许可证：未知
+- 使用方式：只进行结构抽象和规则重写；不复制完整 Prompt 和图片
+- 正式 Reference：`controls/realism-quality/anti-ai-realism.md`
+- 核心修订：从零生成时把皮肤拆成纹理、高光位置、质感基调、轻微不完美和光线；不新建第三份皮肤叶子
+
 ---
 
 ## 变更记录
@@ -190,3 +220,5 @@
 - 2026-07-10：完成 awesome Phase 5–9 外部知识登记。
 - 2026-07-10：Phase 10 建立自动检查和 CI，固化最终映射并删除临时摄取目录。
 - 2026-08-19：将四区角色身份参考板沉淀到 `character-assets`，并固定“仅第一列去头、第二列完整后脑”的默认规则。
+- 2026-08-30：将南鸢保真细节增强长文沉淀为 `image-editing` 的按需 control，并收窄整体图生图的质感优化边界。
+- 2026-08-30：将从零生成的皮肤五变量并入 `anti-ai-realism`，与保真编辑保持正交。

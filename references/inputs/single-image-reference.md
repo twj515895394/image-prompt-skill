@@ -110,7 +110,7 @@
 
 - 复现、结构提炼或改造 Prompt → `../tasks/prompt-reverse-engineering/playbook.md`；
 - 整体画面改写 → `../tasks/image-to-image/playbook.md`；
-- 局部修改 → `../tasks/image-editing/playbook.md`；
+- 局部修改，或已有成片只补皮肤微观纹理 / 保真细节增强 → `../tasks/image-editing/playbook.md`；
 - 角色、场景、分镜或视频参考帧 → 对应任务 Playbook。
 
 ## 常见失败与修复

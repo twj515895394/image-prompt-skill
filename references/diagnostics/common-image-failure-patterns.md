@@ -29,7 +29,12 @@
 
 现象：皮肤像蜡，纹理消失，高光和反射不自然。
 
-修复：补轻微皮肤纹理、普通环境光和不过度修图。
+修复：
+
+- 从零生成时，不要只堆“真实皮肤”。按高光 → 光线 → 纹理的顺序检查，并把皮肤拆成纹理、高光位置、半哑光基调、轻微不完美和光线；
+- 已有成片只是被磨平，按保真细节增强处理：同时写清允许增加的微观细节、必须锁定的身份与光影、以及油光 / 贴图 / 继续磨皮等排除项。
+
+不要只补“增加毛孔”。那会变成一边加纹理、一边继续磨皮，或给整张脸贴一层均匀颗粒。
 
 可选限制：
 
@@ -93,6 +98,7 @@
 ## 路由建议
 
 - 真实感问题：`../controls/realism-quality/anti-ai-realism.md`
+- 已有成片只缺皮肤微观细节：`../controls/realism-quality/fidelity-detail-enhancement.md`
 - 抓拍构图：`../controls/composition-camera/candid-composition-imperfections.md`
 - 侧颜和体态：`../controls/pose-action/side-profile-body-line.md`
 - 办公空间：`../libraries/environment/office-workplace-environment.md`

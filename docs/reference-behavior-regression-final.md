@@ -63,6 +63,9 @@
 | 26 | 单幅韩漫人物插画 | finished-image | comic / manhwa style | comic panels、multi-panel continuity | 通过 |
 | 27 | 普通真人办公室照片 | finished-image | photography route | pixel art、isometric、anime key visual | 通过 |
 | 28 | 产品与人物混合品牌广告 | finished-image | 单一主 style，product controls 与 portrait / layout 按目标组合 | 同时加载多个互斥 style | 通过 |
+| 29 | 已有人像只补皮肤纹理、不重新设计 | image-editing | fidelity-detail-enhancement | anti-ai-realism、image-to-image | 通过 |
+| 30 | 从文字生成看不出 AI 的生活抓拍 | finished-image | anti-ai-realism | fidelity-detail-enhancement | 通过 |
+| 31 | 窗边中近景人像，皮肤要真实不要塑料 | finished-image | anti-ai-realism 皮肤五变量 | fidelity-detail-enhancement、单独皮肤库 | 通过 |
 
 ## 4. 关键边界回归
 
@@ -70,6 +73,7 @@
 
 - 整体场景、构图和风格允许重写：`image-to-image`；
 - 只改某个对象、文字、动作或区域：`image-editing`；
+- 已有成片只补皮肤微观纹理或有效分辨率：`image-editing` + `fidelity-detail-enhancement`；
 - 是否有参考图不是任务边界。
 
 结论：通过。
@@ -127,15 +131,18 @@
 - 普通办公室场景不加载 game / pixel / isometric；
 - 制作故事板不默认加载成品漫画语言；
 - 正常请求不默认读取 diagnostics；
-- 只有一个 style 作为当前主要实现方式。
+- 只有一个 style 作为当前主要实现方式；
+- 已有成片保真增强不加载 anti-ai-realism；
+- 从零生成真实照片不加载 fidelity-detail-enhancement；
+- 近景真实皮肤不另建皮肤资料库，五变量只存在于 anti-ai-realism。
 
 结论：通过。
 
 ## 7. 最终结论
 
 ```text
-回归用例：28
-通过：28
+回归用例：31
+通过：31
 阻塞：0
 结构性失败：0
 ```

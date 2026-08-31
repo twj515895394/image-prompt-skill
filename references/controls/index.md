@@ -11,6 +11,6 @@
 - 人物、服装、道具和场景一致性：`identity-consistency/index.md`
 - 主辅参考、局部参考与冲突处理：`reference-handling/index.md`
 - 信息优先级、语义组织和 Prompt 组装：`prompt-assembly/index.md`
-- 真实感、自然感、去 AI 感和完成度：`realism-quality/index.md`
+- 真实感、自然感、去 AI 感、保真细节增强和完成度：`realism-quality/index.md`
 
 一个维度已经足够解决问题时，不继续加载相邻控制页。

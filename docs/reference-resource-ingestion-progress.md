@@ -92,6 +92,22 @@
 
 当前 GitHub Contents 写入接口会按文件形成提交。各批次通过抽样、验证、进度和最终验收文档记录逻辑提交范围。
 
+## 独立批次：从零生成皮肤控制（2026-08-30）
+
+- 来源：`https://x.com/nanyuan0412/status/2084451298016202976`
+- 状态：已完成结构抽象，并入现有叶子，不复制原文
+- 更新：`references/controls/realism-quality/anti-ai-realism.md`
+- 边界：生成 / 整体改写 → 皮肤五变量；已有成片只补细节 → `fidelity-detail-enhancement`
+- 验证：`docs/source-audits/2026-08-generated-skin-control-validation.md`
+
+## 独立批次：保真细节增强（2026-08-30）
+
+- 来源：`https://x.com/nanyuan0412/status/2093512541108601334`
+- 状态：已完成结构抽象，不复制原文
+- 新增：`references/controls/realism-quality/fidelity-detail-enhancement.md`
+- 边界：已有成片只补微观细节 → `image-editing`；从零生成真实感 → `anti-ai-realism`；换场景/构图/光影 → `image-to-image`
+- 验证：`docs/source-audits/2026-08-fidelity-detail-enhancement-validation.md`
+
 ## 最近更新
 
 - 2026-07-10：Phase 0–4 完成用户资料迁移与边界收敛。
@@ -99,3 +115,5 @@
 - 2026-07-10：Phase 10 完成自动检查、28 条行为回归、最终迁移映射和临时摄取目录清理。
 - 2026-07-10：快速模式调整为零追问、零解释和纯 Prompt 输出，交互模式改为显式触发。
 - 2026-07-10：补齐 README 与 AGENTS，并将两者纳入完整性检查和 CI。
+- 2026-08-30：独立批次沉淀保真细节增强，作为局部编辑的按需真实感控制。
+- 2026-08-30：独立批次把从零生成的皮肤五变量并入 `anti-ai-realism`。
