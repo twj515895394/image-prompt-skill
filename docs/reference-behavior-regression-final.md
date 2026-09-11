@@ -66,6 +66,12 @@
 | 29 | 已有人像只补皮肤纹理、不重新设计 | image-editing | fidelity-detail-enhancement | anti-ai-realism、image-to-image | 通过 |
 | 30 | 从文字生成看不出 AI 的生活抓拍 | finished-image | anti-ai-realism | fidelity-detail-enhancement | 通过 |
 | 31 | 窗边中近景人像，皮肤要真实不要塑料 | finished-image | anti-ai-realism 皮肤五变量 | fidelity-detail-enhancement、单独皮肤库 | 通过 |
+| 32 | 参考真人照片做四区角色设计图 | character-assets | identity-consistency + anti-ai-realism | fidelity-detail-enhancement、动漫皮肤颗粒 | 通过 |
+| 33 | 普通室内人物照片，要求自然可拍且不过度精修 | finished-image | anti-ai-realism，按需 camera / light | fidelity-detail-enhancement、随机瑕疵堆叠 | 通过 |
+| 34 | 白底陶瓷杯电商主图，要求洁净对称 | finished-image | product display、hero composition、studio lighting、product photography | 强制生活纪实瑕疵、随机旧化 | 通过 |
+| 35 | 远景人物要求真实但不强调皮肤细节 | finished-image | anti-ai-realism，按景别降低皮肤纹理密度 | 近景五变量全量铺写 | 通过 |
+| 36 | 只用噪点、颗粒和全局锐化制造真实感 | finished-image | anti-ai-realism 诊断：回到结构、光线和材质 | 低清废片化、统一皮肤颗粒 | 通过 |
+| 37 | 从真人参考图提炼可复用的自然照片 Prompt 结构 | prompt-reverse-engineering | single-image-reference、realism-quality | 无条件复制原人物和原图缺陷 | 通过 |
 
 ## 4. 关键边界回归
 
@@ -134,15 +140,19 @@
 - 只有一个 style 作为当前主要实现方式；
 - 已有成片保真增强不加载 anti-ai-realism；
 - 从零生成真实照片不加载 fidelity-detail-enhancement；
-- 近景真实皮肤不另建皮肤资料库，五变量只存在于 anti-ai-realism。
+- 近景真实皮肤不另建皮肤资料库，五变量只存在于 anti-ai-realism；
+- 写实角色设计图加载 anti-ai-realism，不加载 fidelity-detail-enhancement；
+- 动漫 / 像素角色设计图不加载皮肤五变量。
+- 普通自然照片可加载 anti-ai-realism；商业洁净产品图不强制加载生活纪实控制；
+- 远景不铺近景级别的皮肤纹理；噪点、颗粒和锐化不替代结构、光线或材质控制。
 
 结论：通过。
 
 ## 7. 最终结论
 
 ```text
-回归用例：31
-通过：31
+回归用例：37
+通过：37
 阻塞：0
 结构性失败：0
 ```

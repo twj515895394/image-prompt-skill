@@ -32,6 +32,8 @@
 - 输入：`single-image-reference`
 - 任务：`character-assets`
 - 按需读取身份一致性 control
+- 参考图是人物照片，必须同时读取 `anti-ai-realism`，把 Close-up 皮肤五变量写入 Prompt
+- 不读取 `fidelity-detail-enhancement`
 - 输出一份完整四区 Prompt，不拆成四个互相独立的角色
 - 第一列必须明确去掉完整头部
 - 第二列必须明确保留完整后脑和发型后部
@@ -56,6 +58,7 @@
 - 自动补全稳定、不过度设定的脸型和五官锚点
 - 第一列无头无脸；第二列保留短发后脑
 - 中性 / 微笑 Close-up 共享同一身份锚点
+- 未声明写实、也没有真人照片时，不强制加载 `anti-ai-realism`
 
 结果：规则覆盖。
 
@@ -120,6 +123,16 @@ Face 区上下 50 / 50
 
 右下微笑 Close-up 如果改变脸型、眼距、鼻唇比例、发际线、主要发型或人物年龄感，应判定为身份一致性失败。
 
+### Case 9：写实四区板缺少皮肤控制
+
+参考真人照片生成四区角色设计图时，若 Prompt 只写「真实皮肤」「perfect skin」或把右侧 Close-up 写成磨皮陶瓷脸，必须判定为失败。
+
+修复要求：读取 `anti-ai-realism.md`；Close-up 分开写半哑光基调、T 区高光和区域纹理；颈、手不得比脸更光滑。
+
+### Case 10：动漫角色误加真人毛孔
+
+用户明确要求二次元 / 像素 / 插画角色设计图时，不应加载 `anti-ai-realism` 的皮肤五变量。
+
 ## 相邻任务反向回归
 
 以下请求不应默认套用四区角色板：
@@ -136,11 +149,15 @@ Face 区上下 50 / 50
 ```text
 1 input
 1 character-assets task
-0–2 controls（通常 identity-consistency，必要时 reference-handling）
+0–2 controls
+写实真人：identity-consistency + anti-ai-realism
+stylized / 非写实：identity-consistency，必要时 continuity 或 reference-handling
 0–2 libraries
 0–1 style
 0–1 diagnostic
 ```
+
+写实四区板不要再叠加 `fidelity-detail-enhancement`，也不要为皮肤新建第三份 control。
 
 无需创建单独的四区 layout control，避免同一规则出现第二份正文真源。
 
@@ -158,3 +175,5 @@ PANEL 2 MUST INCLUDE THE REAR HEAD BUT MUST NOT SHOW THE FACE.
 ```text
 只有第一列去头；第二列必须有后脑，但绝对不能露脸。
 ```
+
+写实真人四区板额外要求：身份控制之外必须加载 `anti-ai-realism`，Close-up 按皮肤五变量写，不得只写「真实皮肤」。
