@@ -66,7 +66,7 @@
 | 29 | 已有人像只补皮肤纹理、不重新设计 | image-editing | fidelity-detail-enhancement | anti-ai-realism、image-to-image | 通过 |
 | 30 | 从文字生成看不出 AI 的生活抓拍 | finished-image | anti-ai-realism | fidelity-detail-enhancement | 通过 |
 | 31 | 窗边中近景人像，皮肤要真实不要塑料 | finished-image | anti-ai-realism 皮肤五变量 | fidelity-detail-enhancement、单独皮肤库 | 通过 |
-| 32 | 参考真人照片做四区角色设计图 | character-assets | identity-consistency + anti-ai-realism | fidelity-detail-enhancement、动漫皮肤颗粒 | 通过 |
+| 32 | 参考真人照片做三分区角色设计图 | character-assets | identity-consistency + anti-ai-realism | fidelity-detail-enhancement、动漫皮肤颗粒；第 3 区不得混入颈部、肩线或服装 | 通过 |
 | 33 | 普通室内人物照片，要求自然可拍且不过度精修 | finished-image | anti-ai-realism，按需 camera / light | fidelity-detail-enhancement、随机瑕疵堆叠 | 通过 |
 | 34 | 白底陶瓷杯电商主图，要求洁净对称 | finished-image | product display、hero composition、studio lighting、product photography | 强制生活纪实瑕疵、随机旧化 | 通过 |
 | 35 | 远景人物要求真实但不强调皮肤细节 | finished-image | anti-ai-realism，按景别降低皮肤纹理密度 | 近景五变量全量铺写 | 通过 |
