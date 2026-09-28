@@ -108,6 +108,19 @@
 - 边界：已有成片只补微观细节 → `image-editing`；从零生成真实感 → `anti-ai-realism`；换场景/构图/光影 → `image-to-image`
 - 验证：`docs/source-audits/2026-08-fidelity-detail-enhancement-validation.md`
 
+## 独立批次：Qwen-Compatible Prompt Finalization（2026-09-28）
+
+- 来源：Qwen-Image-2.1 官方 Prompt Rewrite / Edit Prompt Enhancer 规范；`iamyoki/qwen-image-2.1-skill` 作为辅助实现参考
+- 状态：已完成模型无关化抽象，不复制官方完整 system prompt
+- 新增：`assets/templates/prompt-finalization-contract.md`
+- 更新：`SKILL.md`、快速/交互输出合同、`references/SOURCES.md`、完整性检查 required path
+- 运行链路：Visual Intent → Finalization → QC → Auto Repair → QC Re-check → Output Contract
+- 跨模型边界：Qwen-compatible 作为默认 Prompt 语义基线；GPT Image、Nano Banana 等只做最小表面格式适配
+- Qwen 专属边界：只有用户明确要求 Qwen API / JSON / Pipeline 时启用 `wh_ratio / ratio_follow`
+- 验证：`docs/source-audits/2026-09-qwen-compatible-prompt-finalization-validation.md`
+- 最终映射：`docs/source-audits/2026-09-qwen-compatible-prompt-finalization-final-mapping.md`
+- CI：PR #3 最新 Head 的 Reference Integrity 已通过
+
 ## 最近更新
 
 - 2026-07-10：Phase 0–4 完成用户资料迁移与边界收敛。
@@ -119,3 +132,4 @@
 - 2026-08-30：独立批次把从零生成的皮肤五变量并入 `anti-ai-realism`。
 - 2026-09-17：按用户反馈将角色身份参考板从默认四区改为三分区；默认人脸区只保留正常表情，微笑与左 / 右 45°朝向改为独立三分区变体。
 - 2026-09-22：补充“参考图人物特征 + 角色图”的自动路由，并将三分区默认背景固定为纯灰白摄影棚，不继承参考图背景。
+- 2026-09-28：新增 Qwen-compatible Prompt Finalization 层，所有最终 Prompt 在输出前强制经过 QC、自动修复和复检，并保持跨模型可迁移。
