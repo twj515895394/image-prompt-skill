@@ -13,7 +13,8 @@ description: 当用户需要根据文字或参考图生成成片生图、整体�
 
 - 快速模式直接输出可复制的最终 Prompt 或 Prompt Pack；
 - 交互模式先完成必要设计决策，再输出结构化最终结果；
-- 主体、场景、动作、镜头、光影、材质、风格和限制必须形成同一套可执行描述。
+- 主体、场景、动作、镜头、光影、材质、风格和限制必须形成同一套可执行描述；
+- 最终 Prompt 在对外输出前必须经过统一 Prompt Finalization、QC、自动修复和 QC 复检。
 
 ## 适用范围
 
@@ -46,6 +47,8 @@ description: 当用户需要根据文字或参考图生成成片生图、整体�
 - Reference 可以很多，但每次只读取当前任务真正需要的一条或几条路线。
 - 同一知识只保留一个正文真源；不同索引可以指向它，但禁止复制正文。
 - 不向用户暴露内部目录、维护路径和知识迁移过程。
+- 视觉设计由 Task / Input / Controls / Libraries / Styles 决定；最终表达由 `assets/templates/prompt-finalization-contract.md` 统一规范，模型规范层不得反向覆盖已经确定的视觉意图。
+- 默认最终表达采用 Qwen-Image-2.1 Prompt Enhancer 所体现的自然语言规范作为跨模型基线；GPT Image、Nano Banana 等模型复用同一语义骨架，仅在用户明确指定目标模型时做最小表面格式适配。
 
 ## 第一步：判断任务
 
@@ -127,6 +130,7 @@ description: 当用户需要根据文字或参考图生成成片生图、整体�
 - 当前输入 Reference；
 - 当前任务 Playbook；
 - 按需 controls、libraries 和 style；
+- `assets/templates/prompt-finalization-contract.md`；
 - `assets/templates/mode-quick-output-contract.md`。
 
 快速模式不读取结构化任务交付模板，除非用户明确要求完整文档式输出。
@@ -172,6 +176,7 @@ description: 当用户需要根据文字或参考图生成成片生图、整体�
 - 当前输入 Reference；
 - 当前任务 Playbook；
 - 按需 controls、libraries 和 style；
+- `assets/templates/prompt-finalization-contract.md`；
 - `assets/templates/mode-interactive-output-contract.md`；
 - 最终需要完整结构化交付时，再读取当前任务模板。
 
@@ -197,11 +202,12 @@ description: 当用户需要根据文字或参考图生成成片生图、整体�
    - `0-2` 份 libraries
    - `0-1` 份 style
    - `0-1` 份 diagnostic
-4. 根据模式读取一份 mode output contract。
-5. 分类索引和 mode output contract 不计入业务 Reference 数量。
-6. 不为了凑满额度而读取资料。
-7. 同一文件被多个入口命中时只读取一次。
-8. 只有用户反馈效果不好、参考冲突或问题跨多个维度时才读取 diagnostics。
+4. 在最终输出前固定读取 `assets/templates/prompt-finalization-contract.md`，执行 Prompt Finalization、QC、自动修复和 QC 复检。
+5. 根据模式读取一份 mode output contract。
+6. 分类索引、Prompt Finalization Contract 和 mode output contract 不计入业务 Reference 数量。
+7. 不为了凑满额度而读取资料。
+8. 同一文件被多个入口命中时只读取一次。
+9. 只有用户反馈效果不好、参考冲突或问题跨多个维度时才读取 diagnostics。
 
 ## Reference 职责
 
@@ -211,6 +217,7 @@ description: 当用户需要根据文字或参考图生成成片生图、整体�
 - `libraries/`：具体选择器、详细资料和知识库
 - `styles/`：某种视觉风格如何实现
 - `diagnostics/`：跨任务、跨维度综合诊断
+- `assets/templates/prompt-finalization-contract.md`：将完整视觉意图编译成跨模型可执行 Prompt，并负责输出前 QC 与自动修复
 - `assets/templates/mode-*`：模式输出合同
 - `assets/templates/*-template.md`：交互模式或用户明确要求的结构化交付版式
 
@@ -228,18 +235,23 @@ description: 当用户需要根据文字或参考图生成成片生图、整体�
 
 局部编辑任务中，“其他内容保持不变”属于高优先级约束。
 
+Prompt Finalization、QC 和自动修复不得改变以上优先级，只能修正表达、冲突和格式。
+
 ## Prompt 组装原则
 
 - 先确定主体与任务目标，再写风格。
 - 先写空间、动作和观看关系，再写装饰细节。
 - 静态图片写实任务优先按“主体身份与结构 → 场景与事件 → 拍摄者关系与镜头 → 光线 → 材质 → 受控不完美 → 风格 → 相关限制”组织；具体任务 Playbook 已有更细顺序时沿用其顺序。
 - 镜头、光影、色彩、材质和情绪必须互相支持。
-- 负向限制只针对当前最危险的失败模式，不做无差别堆叠。
+- 负向限制只针对当前最危险的失败模式，不做无差别堆叠；最终化阶段优先转换为正向视觉状态。
 - 参考图任务必须明确：保留什么、修改什么、允许什么变化、禁止什么出现。
-- 默认使用中文完整描述，可保留必要英文行业术语和关键词。
+- 内部视觉规划与 Reference 组装默认可使用中文；最终 Prompt 的语言、语法和表面格式由 `prompt-finalization-contract.md` 决定。
+- Text-to-Image 默认最终化为 Qwen-compatible 的英文观察式画面描述；Image Edit 默认最终化为属性解耦的编辑指令。
 - 快速模式把主体、场景、动作、镜头、光影、材质、风格、参考关系和限制项合并为同一份最终 Prompt。
 
 ## 输出前自查
+
+现有自查属于 Prompt Finalization QC 的输入检查，最终交付前仍必须执行完整 Hard Checks 和自动修复：
 
 - 主体是否唯一清楚
 - 场景是否可视觉化
@@ -249,7 +261,10 @@ description: 当用户需要根据文字或参考图生成成片生图、整体�
 - 固定项与可变项是否混淆
 - 限制项是否与任务直接相关
 - 是否出现互相冲突的要求
+- 图片内可读文字是否逐字准确
 - 当前输出是否符合快速或交互模式合同
+
+任一 Hard Check 失败时不得直接输出，必须先按 `prompt-finalization-contract.md` 自动修复并复检。
 
 ## 输出要求
 
@@ -263,10 +278,13 @@ description: 当用户需要根据文字或参考图生成成片生图、整体�
 - 不单列限制项；
 - 不显示自动补全项；
 - 不显示方向决策；
+- 不显示 QC 或自动修复过程；
 - 不附加使用说明或结尾追问；
 - 可以使用一个代码块承载 Prompt，但代码块前后不附加说明。
 
 资产类任务需要多个独立 Prompt 时，只输出必要的 Prompt Pack 内容。可以用极简编号或分隔符区分，但不添加说明性标题。
+
+用户明确要求 API / JSON / Pipeline / 结构化格式时，以 `prompt-finalization-contract.md` 中对应目标模型的结构化输出规则覆盖普通纯 Prompt 展示方式。
 
 ### 交互模式
 
@@ -281,6 +299,8 @@ description: 当用户需要根据文字或参考图生成成片生图、整体�
 - 固定项与可变项；
 - 推荐资产结构或执行顺序。
 
+所有最终 Prompt 都必须先通过 Finalization、QC、自动修复和 QC 复检。
+
 用户要求完整结构化交付时，读取当前任务对应的 `assets/templates/` 模板。
 
 ## 严禁事项
@@ -294,3 +314,5 @@ description: 当用户需要根据文字或参考图生成成片生图、整体�
 - 不复制同一知识形成多个正文版本
 - 不先堆风格词再补主体
 - 不用空泛质量词替代可执行视觉变量
+- 不跳过最终 Prompt 的 QC 与自动修复
+- 不让模型表面格式反向修改已确定的主体、身份、构图或参考关系
