@@ -245,7 +245,7 @@ Prompt Finalization、QC 和自动修复不得改变以上优先级，只能修�
 - 镜头、光影、色彩、材质和情绪必须互相支持。
 - 负向限制只针对当前最危险的失败模式，不做无差别堆叠；最终化阶段优先转换为正向视觉状态。
 - 参考图任务必须明确：保留什么、修改什么、允许什么变化、禁止什么出现。
-- 内部视觉规划与 Reference 组装默认可使用中文；最终 Prompt 的语言、语法和表面格式由 `prompt-finalization-contract.md` 决定。
+- 内部视觉规划与 Reference 组装默认可使用中文；最终 Prompt 的语言、语法和表面格式由 `assets/templates/prompt-finalization-contract.md` 决定。
 - Text-to-Image 默认最终化为 Qwen-compatible 的英文观察式画面描述；Image Edit 默认最终化为属性解耦的编辑指令。
 - 快速模式把主体、场景、动作、镜头、光影、材质、风格、参考关系和限制项合并为同一份最终 Prompt。
 
@@ -264,7 +264,7 @@ Prompt Finalization、QC 和自动修复不得改变以上优先级，只能修�
 - 图片内可读文字是否逐字准确
 - 当前输出是否符合快速或交互模式合同
 
-任一 Hard Check 失败时不得直接输出，必须先按 `prompt-finalization-contract.md` 自动修复并复检。
+任一 Hard Check 失败时不得直接输出，必须先按 `assets/templates/prompt-finalization-contract.md` 自动修复并复检。
 
 ## 输出要求
 
@@ -284,7 +284,7 @@ Prompt Finalization、QC 和自动修复不得改变以上优先级，只能修�
 
 资产类任务需要多个独立 Prompt 时，只输出必要的 Prompt Pack 内容。可以用极简编号或分隔符区分，但不添加说明性标题。
 
-用户明确要求 API / JSON / Pipeline / 结构化格式时，以 `prompt-finalization-contract.md` 中对应目标模型的结构化输出规则覆盖普通纯 Prompt 展示方式。
+用户明确要求 API / JSON / Pipeline / 结构化格式时，以 `assets/templates/prompt-finalization-contract.md` 中对应目标模型的结构化输出规则覆盖普通纯 Prompt 展示方式。
 
 ### 交互模式
 
