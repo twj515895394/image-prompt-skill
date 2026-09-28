@@ -211,6 +211,22 @@
 - 正式 Reference：`controls/realism-quality/anti-ai-realism.md`
 - 核心修订：从零生成时把皮肤拆成纹理、高光位置、质感基调、轻微不完美和光线；不新建第三份皮肤叶子
 
+## Qwen-Compatible Prompt Finalization（2026-09-28）
+
+- 来源名称：Qwen-Image-2.1 官方 Prompt Rewrite / Edit Prompt Enhancer 规范
+- 来源 URL：`https://github.com/QwenLM/Qwen-Image-2.1/tree/main/prompt_rewrite/prompts`
+- 辅助实现参考：`https://github.com/iamyoki/qwen-image-2.1-skill`
+- 来源审计：`../docs/source-audits/2026-09-qwen-compatible-prompt-finalization.md`
+- 验证：`../docs/source-audits/2026-09-qwen-compatible-prompt-finalization-validation.md`
+- 最终映射：`../docs/source-audits/2026-09-qwen-compatible-prompt-finalization-final-mapping.md`
+- 访问日期：2026-09-28
+- 官方许可证：Qwen RESEARCH LICENSE AGREEMENT（非商业研究/评估限制）；不按宽松开源许可证直接复制材料
+- 辅助实现许可证：Apache License 2.0
+- 使用方式：只抽象 observer-style T2I、Attribute Disentanglement、Reference Role、文字字面锁定、空间/材质/光线显式化和画幅参数分离等机制；不复制官方完整 system prompt
+- 正式运行真源：`../assets/templates/prompt-finalization-contract.md`
+- 同步更新：`../SKILL.md`、`../assets/templates/mode-quick-output-contract.md`、`../assets/templates/mode-interactive-output-contract.md`
+- 核心修订：所有最终 Prompt 在输出前统一执行 Prompt Finalization → QC → 自动修复 → QC 复检；Qwen-compatible 作为跨模型默认语义基线，GPT Image / Nano Banana 等只做最小表面格式适配
+
 ---
 
 ## 变更记录
@@ -225,3 +241,4 @@
 - 2026-09-24：按用户反馈收紧第 3 区特写职责，只保留头部、发型和发饰，移除颈部、肩线及服装，确保五官特征获得最大展示面积。
 - 2026-08-30：将南鸢保真细节增强长文沉淀为 `image-editing` 的按需 control，并收窄整体图生图的质感优化边界。
 - 2026-08-30：将从零生成的皮肤五变量并入 `anti-ai-realism`，与保真编辑保持正交。
+- 2026-09-28：将 Qwen-Image-2.1 Prompt Rewrite / Edit 机制抽象为跨模型 Prompt Finalization Contract，并加入输出前 QC、自动修复与复检。
