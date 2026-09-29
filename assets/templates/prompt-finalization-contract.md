@@ -2,316 +2,370 @@
 
 ## 用途
 
-本合同位于视觉意图组装之后、最终对外输出之前。它不负责决定“画什么”，只负责把已经完成的主体、场景、动作、镜头、光影、材质、风格、参考关系和限制，整理成更稳定、可执行、跨模型可迁移的最终 Prompt。
+本合同位于视觉意图组装之后、最终对外输出之前。它不决定“画什么”，只负责把已经确定的主体、场景、动作、镜头、光影、材质、风格、参考关系和限制，编译成稳定、可执行、跨模型可迁移的最终 Prompt。
 
-默认采用 Qwen-Image-2.1 官方 Prompt Rewriting / Edit Prompt Enhancer 所体现的表达原则作为基础语法，但正式规则经过模型无关化处理：Qwen、GPT Image、Nano Banana 及其他支持自然语言图像生成或编辑的模型都可以复用同一语义骨架。只有用户明确指定目标模型、API 或结构化格式时，才启用该模型专属的字段、标签或表面语法。
+canonical grammar 以 Qwen-Image-2.1 Prompt Rewriting / Edit Prompt Enhancer 的核心规则为基线。GPT Image、Nano Banana 等模型可以复用同一语义骨架，但只允许修改表面输入格式、图片引用语法或必要长度限制；不得借“跨模型适配”放宽 T2I / Edit 的硬规则。
 
 本合同属于运行输出层，不计入 `controls / libraries / styles / diagnostics` 的业务 Reference 加载预算。
 
-## 什么时候读取
+## 执行顺序
 
-每次准备交付最终 Prompt 或 Prompt Pack 时都必须读取。
-
-执行顺序固定为：
+每次准备交付最终 Prompt 或 Prompt Pack 时都必须执行：
 
 ```text
-任务与输入理解
-→ 视觉意图组装
-→ Prompt Finalization
+Task Intent
+→ Image Relevance / Role
+→ Finalizer Route
+→ Visual Intent
+→ Canonical Prompt Finalization
+→ Final Output Gate
 → QC
-→ 自动修复
-→ QC 复检
-→ mode output contract
-→ 对外输出
+→ Auto Repair
+→ QC Re-check
+→ Mode Output Contract
+→ User Output
 ```
 
-交互模式在“最终收口”时执行；交互过程中的问题与讨论不执行最终化。
+交互模式只在最终收口时执行；中间讨论不执行最终化。
 
-## 第一步：确定最终表达模式
+## 1. Finalizer Route：不按附件数量判断
 
-### A. Text-to-Image / 从零生成
+先给每张当前附件分配运行职责：
 
-适用于没有需要被直接编辑的输入画布，而是根据文字或参考信息重新生成一张新图的任务，包括成片生图、重新构图式角色资产、场景资产、分镜关键帧和视频参考帧。
+```text
+GENERATION_INPUT
+- 最终真正生图时仍要作为模型输入
+- 例如 canvas、identity、outfit、pose、scene、style reference
 
-最终 Prompt 使用“观察最终画面”的描述方式：
+ANALYSIS_SOURCE
+- 只用于反推、分析、拆解、提取构图/光影/风格规律
+- 最终 Prompt 可以脱离该图执行
+
+CONTEXT_ONLY
+- 只帮助理解需求背景
+- 不参与最终生成
+
+IRRELEVANT
+- 当前提示词没有使用该图
+- 误接、历史附件或无关图片
+- 完全忽略
+```
+
+然后判断：
+
+```text
+最终执行 Prompt 时需要 >= 1 个 GENERATION_INPUT
+→ Edit Finalizer
+
+最终执行 Prompt 时不需要任何 GENERATION_INPUT
+→ T2I Finalizer
+```
+
+### 必须遵守的例子
+
+- 看图反推一个以后可独立生成的 Prompt → 图片是 `ANALYSIS_SOURCE` → T2I；
+- 看图分析版式并给通用模板 → `ANALYSIS_SOURCE` → T2I；
+- 根据人物参考图重新做写真 / 海报 / 三分区角色图，并要求保持身份 → `GENERATION_INPUT / identity` → Edit；
+- 图 1 人物换图 2 衣服 → 两张都是 `GENERATION_INPUT` → Edit；
+- 消息带图但用户当前只要求一个无关的全新文本场景 → 图片 `IRRELEVANT` → T2I；
+- 只修改原图局部 → 原图 `GENERATION_INPUT / canvas` → Edit。
+
+**Task Route 与 Finalizer Route 必须分开。** `prompt-reverse-engineering` 可以最终走 T2I，也可以最终走 Edit；`character-assets` 也可以因为是否继续依赖身份参考图而走不同 Finalizer。
+
+## 2. 先锁定用户固定项
+
+Finalization、QC 和自动修复都不能擅自改变：
+
+- 主体、对象与数量；
+- 明确颜色；
+- 前后左右、上下、遮挡、层级等空间关系；
+- 动作、姿态、表情和视线；
+- 服装、道具、材质；
+- 景别、机位、构图和明确裁切；
+- 时间、天气、场景；
+- 必须保留 / 必须修改的参考属性；
+- 图片内可读文字及其标点、大小写、语言和顺序；
+- 用户明确给出的用途和比例意图。
+
+自动补全只能填空，不能借“优化”覆盖固定项。
+
+## 3. T2I Canonical Grammar
+
+只有当最终 Prompt 可以脱离当前图片独立执行时使用。
+
+### 3.1 语言与叙述视角
 
 - 默认使用英文描述性 prose；
-- 使用现在时、第三人称、陈述句；
-- 描述已经存在于画面里的可见结果，而不是对模型发号施令；
-- 不写 `create`、`make sure`、`the AI should` 等渲染器命令；
-- 不写 tag soup，不用逗号堆积一串孤立关键词替代完整画面；
-- 不用 `masterpiece`、`8K`、`award-winning`、`highly detailed` 等空泛质量词充当质量控制。
+- 现在时、第三人称、observer perspective；
+- 描述“最终画面已经是什么样”，而不是给模型下命令；
+- 不使用 `create`、`generate`、`make sure`、`please`、`the AI should` 等渲染器指令；
+- 不使用 tag soup；
+- 不用 `masterpiece`、`8K`、`award-winning`、`highly detailed` 等空泛 booster 代替可观察视觉信息。
 
-### B. Image Edit / Reference Edit / 多图合成
+### 3.2 开头建立整张图
 
-适用于已有输入图，用户希望替换、增加、删除、修复、换装、换背景、换脸、合成、扩图、风格迁移或保持身份重新构图的任务。
-
-最终 Prompt 使用“编辑指令”表达方式：
-
-- 中文指令 → 最终描述性指令默认中文；
-- 英文指令 → 最终描述性指令英文；
-- 其他语言指令 → 默认英文，除非用户明确要求使用目标语言；
-- 先写需要执行的编辑操作，再写需要保持的锚点；
-- 只详细描述需要改变的属性；
-- 未被修改的内容使用高层级 preservation clause，不重新逐项描绘；
-- 身份是最高优先级不变量之一，除非用户明确要求改变身份。
-
-### C. Prompt Reverse Engineering
-
-反推任务最终要生成“可再次用于从零生成的 Prompt”时，走 Text-to-Image 表达；最终要生成“基于原图继续编辑的 Prompt”时，走 Image Edit 表达。不要因为任务名叫“反推”而建立第三套语法。
-
-## 第二步：固定用户已经明确的内容
-
-在改写之前先锁定用户已经给出的事实。以下内容不得在 finalization、QC 或自动修复过程中被擅自改写：
-
-- 用户指定的主体、对象、数量；
-- 明确颜色；
-- 明确空间位置与前后左右关系；
-- 明确动作、姿态、表情；
-- 明确服装、道具和材质要求；
-- 明确镜头、景别、机位和构图要求；
-- 明确时间、天气、场景；
-- 明确必须保留或必须改变的参考图属性；
-- 需要出现在图片中的可读文字及其标点、大小写、语言和顺序；
-- 用户明确给出的画幅比例或用途。
-
-自动补全只能填充用户没有定义的空白，不能借“优化”覆盖固定项。
-
-## 第三步：Text-to-Image 最终化规则
-
-### 1. 开头先建立整张图
-
-开头一句优先包含：
+第一句优先包含：
 
 ```text
-orientation + style/medium + main subject + background/palette
+orientation / framing
++ medium / style
++ main subject
++ background / palette
 ```
 
-Medium 不省略，例如 photograph、portrait、scene、poster、illustration、character sheet、infographic、3D render。
+Medium 不省略，例如 photograph、portrait、poster、illustration、character sheet、infographic、3D render。
 
-### 2. 按画面或主体顺序描述
+### 3.3 按画面关系展开
 
-多区域画面按以下顺序：
+复杂多区域画面优先按区域组织：
 
 ```text
-背景/承载面
-→ 顶部区域
-→ 左侧
-→ 中央
-→ 右侧
-→ 下方/前景
+background / surface
+→ top
+→ left
+→ center
+→ right
+→ bottom / foreground
 ```
 
-单主体画面按以下顺序：
+单主体优先按：
 
 ```text
-背景与景深
-→ 主体位置和姿态
-→ 头部/面部
-→ 身体/服装/表面
-→ 接触物与道具
-→ 边缘剩余环境
+background / depth
+→ subject placement / posture
+→ face / head
+→ body / garments / surface
+→ contact objects
+→ remaining environment
 ```
 
-空间关系必须可定位。复杂画面通常使用约 8–14 个有意义的位置锚点；简单单主体只使用真正有价值的位置词，不机械凑数量。
+复杂画面通常需要足够的位置锚点；简单单主体不机械凑数量。
 
-### 3. 人物只写可观察表面
+### 3.4 人物与材质
 
-人物优先描述：
+只写可观察信息：build、posture、gaze、expression、hair、visible skin characteristics、garment construction、folds、contact relationship。
 
-- build / 身体比例；
-- posture / 重心；
-- gaze / 视线；
-- expression / 表情；
-- hair / 发型；
-- visible skin characteristics / 可见皮肤特征；
-- garments / 服装结构、颜色、材质、褶皱；
-- 与道具、地面、他人的接触关系。
+颜色和材质具体化，例如 muted olive、off-white、ribbed cotton、weathered concrete、brushed metal、frosted glass；用户已给出的颜色不得自行替换。
 
-不要把不可见的人物背景故事写进静态画面 Prompt。
+### 3.5 图片中文字
 
-### 4. 颜色和材质必须具体
+所有真正需要读出来的文字使用直双引号，保持用户指定的原语言、标点、大小写和顺序。
 
-优先使用带修饰的颜色和可观察材质，例如 muted olive、deep navy、off-white、ribbed cotton、weathered concrete、brushed metal、frosted glass。用户给出明确颜色时必须保持，不因润色擅自换色。
+无法确认的背景小字不要臆造，可以描述为 blurred、indistinct、too small to read。
 
-### 5. 图片中文字必须字面固定
+### 3.6 光线与物理关系
 
-所有需要真正读出来的图片内文字使用直双引号包住，并保持用户要求的原语言、标点、大小写和顺序。不要为远处招牌、不可读正文或背景标签臆造文字；这些内容可以描述为 blurred、indistinct 或 too small to read。
-
-### 6. 光线必须明确
-
-最终 Prompt 必须交代与当前任务相关的：
+明确与稳定生成相关的：
 
 ```text
 light source
 + direction
 + quality
-+ shadow/highlight response
++ shadow / highlight response
 ```
 
-可以独立成一句，也可以在材质反应句中明确表达，但不能只写 vague 的 `good lighting`、`cinematic lighting`。
+同时检查阴影、反射、尺度、重力、地面接触、座椅接触、服装和头发运动是否自洽。
 
-### 7. 物理关系保持一致
+### 3.7 结尾
 
-检查：
+只用一句 whole-frame composition / design / mood summary 收束，不连续堆叠同义总结。
 
-- 阴影方向是否与光源一致；
-- 反射是否能对应前方物体；
-- 相邻对象尺度是否合理；
-- 人物与地面、座椅、墙体、道具的接触是否成立；
-- 服装、头发和松散物体是否符合姿态、重力和运动状态。
+### 3.8 长度
 
-### 8. 结尾只做一次整体收束
+Qwen 官方典型完整场景可接近约 20 句、400–500 英文词，但本 Skill 不机械凑字数：
 
-最后使用一句整体 composition / design / mood summary 收束画面的平衡、色彩、视觉风格和氛围。不要连续写多个同义总结句。
+- 简单主体：只补真正影响生成稳定性的细节；
+- 常规完整场景：充分描述空间、材质、光线和构图；
+- 海报、多人、多区域、信息密集画面：允许接近官方长描述密度。
 
-### 9. 长度随复杂度变化
+无论长短，都不能退化成关键词列表，也不能为凑长度发明无关道具、文字或背景故事。
 
-Qwen 官方 Prompt Enhancer 以约 20 句、400–500 英文词作为完整画面的典型目标，但本 Skill 不机械填充长度：
+## 4. Edit Canonical Grammar
 
-- 简单单主体：只补足生成稳定性真正需要的信息；
-- 常规完整场景：保持充分的空间、材质、光线和构图描述；
-- 海报、多区域、多人或信息密集画面：可以接近官方长描述密度。
+只要最终生成仍依赖任何 `GENERATION_INPUT` 就使用。
 
-无论长短，都不得退化成关键词列表，也不得为了凑长度发明与用户目标无关的道具、文字或叙事。
+Edit 不等于“只能局部修图”。只要人物、产品、服装、场景等来自输入图片，即使最终要重新设计一个全新的写真、角色板、海报或新场景，仍属于 reference-conditioned Edit。
 
-## 第四步：Image Edit 最终化规则
+### 4.1 语言
 
-### 1. 属性解耦
+描述性指令语言：
 
-只修改用户明确指定的属性，并把目标变化表达得足够明确；未指定属性保持输入图 fidelity。
+- 中文用户指令 → 中文；
+- 英文用户指令 → 英文；
+- 其他语言 → 默认英文，除非用户明确要求目标语言。
 
-同时避免两类失败：
+图片内实际渲染文字仍按用户指定文字 / 输入图主导文字语言 / 当前需求决定，不与描述性 prose 混淆。
 
-- Leakage：编辑服装却连脸、发型、构图、背景一起重绘；
-- Under-editing：变化过弱，肉眼几乎看不出请求已执行。
+### 4.2 属性解耦
 
-### 2. 保留内容不要“重画一遍”
+只详细描述需要改变的属性，并让变化足够明确；未被点名的内容保持输入 fidelity。
 
-需要保持不变的内容只按身份、位置和职责概括，例如：
+同时防止：
+
+- **Leakage**：换衣服时顺便重绘脸、发型、构图、背景；
+- **Under-editing**：变化过弱，几乎看不出请求被执行。
+
+### 4.3 Preservation 不要重画
+
+未修改内容优先用一条高层 preservation clause 概括，例如：
 
 ```text
-保持人物身份、姿态、构图、背景及其他未指定内容与输入图一致。
+保持人物身份、未指定外观、姿态、构图、背景及其他未编辑内容与输入一致。
 ```
 
-不要为了“锁定”而重新详细描写眼睛、鼻子、嘴唇、背景每件家具，因为详细复述会变成新的生成指令并增加漂移。
+不要为了“锁定”而重新逐项详细描述原脸或原背景；那会把 preservation 变成新的重绘指令。
 
-### 3. 身份优先引用来源图
+### 4.4 身份优先绑定来源图
 
-当身份来自参考图时，优先直接绑定参考图，而不是用文字重新概括五官。
+身份来自参考图时，优先指向图片来源，不用文字重新雕刻眼睛、鼻子、嘴唇等五官。
 
-多图任务必须先建立 Reference Role Map，例如：
+只有 `GENERATION_INPUT` 才进入最终 Reference Role Map。
+
+多图例子：
 
 ```text
-<image1> identity / canvas
-<image2> outfit
-<image3> pose
-<image4> scene
+<image1> canvas + identity
+<image2> outfit only
+<image3> pose only
+<image4> scene only
 ```
 
-每张图只提供被分配的属性，不能把辅助图的人脸、身材、背景或风格一起无意迁移。
+每张图只提供被分配属性，辅助图不得把人脸、身材、背景或风格跨职责污染到其他对象。
 
-Qwen 或支持显式 image tag 的目标环境中，多图使用 `<image1>`、`<image2>`…；单图自然称为“图像 / 图片中 / the image”。其他模型如果不支持该标签语法，只替换表面引用方式，不改变 Reference Role Map 的语义。
+### 4.5 图片标签
 
-### 4. 新暴露区域保持物理连续
+- 最终只有 1 张 `GENERATION_INPUT`：正文自然称“图像 / 图片中 / the image”，不写 `<image1>`；
+- 最终有 2 张及以上 `GENERATION_INPUT`：在支持显式标签的目标环境中使用 `<image1>`、`<image2>`…，并逐张说明职责；
+- `ANALYSIS_SOURCE / CONTEXT_ONLY / IRRELEVANT` 永远不进入这些标签编号；
+- 其他模型不支持 Qwen 标签时只替换引用语法，不改变 Role Map。
 
-删除、移动、扩图或替换物体时，说明新增可见区域应如何延续原场景的墙面、地面、纹理、光照、透视和遮挡关系，但不要趁机清理用户没有要求修改的内容。
+### 4.6 新暴露区域
 
-### 5. 限制优先改写为正向状态
+删除、移动、扩图或替换物体后，只补充必要的墙面、地面、纹理、光照、透视和遮挡连续性；不要顺手清理用户未要求处理的缺陷或杂物。
 
-优先把：
+### 4.7 负向限制
+
+优先改写为正向可观察状态，例如：
 
 ```text
-不要自拍、不要出现手机、不要改变背景
+不要自拍、不要出现手机
 ```
 
-改写为：
+优先变为：
 
 ```text
-由画面外第二人拍摄，摄影者与手机始终位于画面之外；背景保持输入图一致。
+由画面外第二人拍摄，摄影者与手机始终位于可见画面之外。
 ```
 
-只有无法可靠转换成正向状态、且属于当前高风险失败模式时，才保留最短必要的明确排除。
+只有无法可靠正向化、且属于当前高风险失败模式时，才保留最短必要排除。
 
-## 第五步：画幅、分辨率与模型专属参数
+## 5. 参数与 Prompt 正文分离
 
-### 通用默认
+### 通用
 
-Prompt 正文描述 orientation、framing 和 crop，不用像素数或 `2K / 4K / 8K` 作为视觉质量词。数字画幅比例优先视为生成参数而不是画面内容。
+数字画幅、像素和 API 参数属于生成参数，不属于 canonical prompt 的视觉正文。
 
-如果最终交付只有纯 Prompt，保留 `vertical / wide / square / tall`、裁切位置、主体占画面比例等视觉语义；不要为了塞入参数而破坏自然语言 Prompt。
+Prompt 正文可以保留：
 
-### Qwen-Image-2.1 结构化输出
+- vertical / horizontal / square / wide / tall；
+- framing / crop / subject occupancy；
+- 版式区域比例（例如 22% + 22% + 56%）在它本身就是可见布局设计时可以保留。
 
-仅当用户明确要求 Qwen API、JSON、Pipeline 或结构化格式时：
+Prompt 正文默认不写：
 
-- T2I：输出 `rewritten_prompt` + `wh_ratio`；
-- Edit：输出 `rewritten_prompt` + `wh_ratio` + `ratio_follow`；
+- `16:9 / 9:16 / 3:2` 等数字画幅；
+- `1920×1080 / 1080p` 等像素或分辨率；
+- `2K / 4K / 8K` 作为质量 booster；
+- API 字段名。
+
+任务 Playbook 中出现的像素、画幅和历史模板字段属于规划信息，Finalizer 必须重新分类后再决定是否进入正文，不能直接复制。
+
+### Qwen 结构化输出
+
+当用户明确要求 Qwen API、JSON、Pipeline 或结构化格式时：
+
+- T2I：`rewritten_prompt` + `wh_ratio`；
+- Edit：`rewritten_prompt` + `wh_ratio` + `ratio_follow`；
 - `wh_ratio` 与 `ratio_follow` 互斥；
-- 比例和分辨率不写进 `rewritten_prompt`；
-- 多图 Edit 的 `ratio_follow` 指向真正的 canvas image。
+- 比例、像素不写进 `rewritten_prompt`；
+- Edit 的 `ratio_follow` 指向真正 canvas generation input。
 
 ### 其他模型
 
-GPT Image、Nano Banana 或其他模型默认复用同一最终 Prompt 语义骨架。只有当用户明确指定目标模型，且该模型确实需要不同的输入格式时，才替换参数字段、图片引用语法或长度约束；不要凭空发明模型专属参数。
+GPT Image、Nano Banana 或其他模型只能替换必要的参数字段、图片引用语法或输入包装方式；canonical prompt 的 T2I / Edit 规则不因模型变化而被放宽。
 
-## 第六步：输出前 QC
+## 6. Final Output Gate
 
-在任何最终 Prompt 对外输出之前，必须完成内部 QC。快速模式不展示 QC 报告。
+在对外输出前，内部必须得到一个明确 Gate 结果：
+
+```text
+ROUTE = T2I | EDIT
+GENERATION_INPUT_COUNT = N
+USER_LOCK = PASS | FAIL
+TASK_GRAMMAR = PASS | FAIL
+REFERENCE_BINDING = PASS | FAIL
+IDENTITY = PASS | FAIL
+SPATIAL_COHERENCE = PASS | FAIL
+PHYSICAL_COHERENCE = PASS | FAIL
+TEXT_LITERALNESS = PASS | FAIL
+PROMPT_HYGIENE = PASS | FAIL
+PARAMETER_SEPARATION = PASS | FAIL
+FORMAT = PASS | FAIL
+FINAL_GATE = PASS | FAIL
+```
+
+这些字段只用于内部检查，不对用户展示。
+
+只要任一 Hard Check 为 FAIL，`FINAL_GATE` 就必须是 FAIL，禁止直接输出候选 Prompt。
 
 ### Hard Checks
 
-逐项检查：
-
-1. **User Lock**：用户固定的主体、数量、颜色、位置、文字、动作、比例和保留项是否全部存活；
-2. **Task Grammar**：T2I 是否为观察式最终画面描述；Edit 是否为清晰编辑指令；
-3. **Reference Binding**：多图职责是否唯一、辅助参考是否发生跨属性污染；
-4. **Identity**：用户要求保持身份时，是否错误重绘、混入其他参考图人物特征；
-5. **Spatial Coherence**：前后左右、遮挡、裁切、主体占比和景别是否互相兼容；
-6. **Physical Coherence**：光源、阴影、反射、重力、接触和尺度是否成立；
-7. **Text Literalness**：所有可读文字是否逐字保持，没有自造额外文案；
-8. **Lighting & Material**：需要生成稳定性的光线、材质和表面反应是否具体；
-9. **Prompt Hygiene**：是否存在重复句、互斥要求、无效质量词、tag soup、无关叙事或过量负向堆叠；
-10. **Format**：是否符合当前 mode output contract；如果使用 Qwen 结构化输出，字段与比例逻辑是否正确。
-
-任一 Hard Check 不通过，不得直接输出。
+1. **Route**：Finalizer Route 是否由最终图片依赖决定，而不是附件数量；
+2. **User Lock**：用户固定项是否全部存活；
+3. **Task Grammar**：T2I / Edit 语法是否正确；
+4. **Reference Binding**：是否只引用 generation inputs，且职责唯一；
+5. **Identity**：要求保持身份时是否发生重绘或参考污染；
+6. **Spatial Coherence**：位置、遮挡、裁切、主体占比是否兼容；
+7. **Physical Coherence**：光源、阴影、反射、重力、接触和尺度是否成立；
+8. **Text Literalness**：所有可读文字是否逐字准确，没有自造额外文案；
+9. **Prompt Hygiene**：无 tag soup、重复、互斥、无关叙事和空泛 booster；
+10. **Parameter Separation**：数字比例、像素和 API 参数是否泄漏进正文；
+11. **Format**：是否符合当前 mode output contract / 目标模型结构化合同。
 
 ### Soft Checks
 
-在不改变用户意图的前提下进一步检查：
-
-- 信息顺序是否从主体/空间到镜头/光线/材质自然展开；
+- 信息顺序是否自然；
 - 细节密度是否符合景别；
 - 简单画面是否被过度扩写；
 - 复杂画面是否缺少关键空间锚点；
-- 风格描述是否已经被转化为可观察视觉属性；
-- 真实感任务是否把“颗粒、瑕疵、8K”等词错误当成真实性本身。
+- 风格词是否已经转成可观察视觉属性；
+- 真实感是否错误依赖“颗粒 / 瑕疵 / 8K”等词。
 
-## 第七步：自动修复
+## 7. 自动修复
 
-QC 发现问题后自动修复，不向用户发起新一轮确认，除非当前处于用户明确要求的交互模式且冲突属于核心创作决策。
+`FINAL_GATE = FAIL` 时自动修复，不把失败草稿交给用户。
 
-自动修复顺序：
+顺序：
 
 ```text
-1. 恢复用户固定项
-2. 修正任务语法（T2I / Edit）
-3. 修正 Reference Role 与身份污染
+1. 恢复 User Lock
+2. 修正 Finalizer Route / T2I-Edit Grammar
+3. 修正 Generation Input Role / Identity Pollution
 4. 消除互斥空间、动作、镜头和光线
-5. 恢复图片内文字的逐字准确性
-6. 删除重复、空泛 booster 和无关扩写
-7. 将可转换的负向限制改为正向视觉状态
-8. 补齐真正缺失的空间、材质或光照信息
-9. 修正当前模型所需的输出表面格式
+5. 恢复图片内文字逐字准确性
+6. 删除重复、tag soup、booster 和无关扩写
+7. 把可转换的负向限制改成正向视觉状态
+8. 补真正缺失的空间、材质或光照信息
+9. 修正参数分离和目标模型表面格式
 ```
 
-修复时采用“最小补丁”原则：只改 QC 命中的问题，不重新生成整份设计，不改变此前已经确认的视觉方向。
+采用最小补丁，不重新设计整份 Prompt。
 
-修复后必须重新执行一次 Hard Checks。若仍存在冲突，最多再进行一次最小修复。两轮后仍无法同时满足时按以下优先级裁决：
+修复后完整重跑 Hard Checks；最多两轮。两轮后仍冲突时按以下优先级裁决：
 
 ```text
 用户当前明确要求
-→ 明确保留/必须修改项
+→ 明确保留 / 必须修改项
 → 身份与参考绑定
 → 当前任务 Playbook
 → 输入 Reference
@@ -319,19 +373,35 @@ QC 发现问题后自动修复，不向用户发起新一轮确认，除非当�
 → 自动补全项
 ```
 
-最终只输出修复后的版本，不把失败草稿、QC 过程或内部修复记录暴露给用户，除非用户明确要求查看诊断。
+最终只能输出 `FINAL_GATE = PASS` 的版本。
+
+## 8. 可执行 Validator
+
+如果当前 Agent 具备终端执行能力，并且可以访问 Skill 仓库，候选 Prompt 应优先调用：
+
+```bash
+python scripts/validate_final_prompt.py --mode t2i --prompt "..."
+python scripts/validate_final_prompt.py --mode edit --generation-input-count 2 --prompt "..."
+```
+
+结构化 Qwen JSON 可使用 `--json-file` 校验。
+
+Validator 只检查能机械判断的结构规则：booster、命令式 T2I、图片标签数量、比例/像素泄漏、结构化字段互斥等。身份、空间、User Lock、编辑泄漏等语义规则仍由 Final Output Gate 判断。
+
+没有终端能力时不得跳过 QC，只是改为按同一 Gate 内部执行。
 
 ## 最终原则
 
-最终 Prompt 应同时满足：
+最终 Prompt 必须同时满足：
 
 ```text
-内容由现有任务/Reference 决定
-+ 表达遵循 Qwen-compatible 的完整自然语言规范
-+ 编辑遵循强属性解耦和最小重绘
-+ 输出前强制 QC
-+ QC 失败自动修复
-+ 表面格式按目标模型最小适配
+内容由 Task / Input / Reference 决定
++ Finalizer Route 由最终图片依赖决定
++ T2I 使用 canonical observer prose
++ Edit 使用强属性解耦与 reference binding
++ 模型 adapter 不放宽 canonical hard rules
++ Final Output Gate 必须 PASS
++ FAIL 自动最小修复并复检
 ```
 
-不要让模型规范层反过来覆盖已经完成的视觉设计决策。
+不要让模型规范层反向覆盖已经确定的视觉设计，也不要让无关附件改变最终 Prompt 语法。
