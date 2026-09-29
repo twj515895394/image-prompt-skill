@@ -80,17 +80,15 @@
 - 具体妆容、发型、场景或材质资料：`../../libraries/index.md`
 - 明确视觉风格：`../../styles/index.md`
 
-## 输出骨架
+## 输出边界
 
-```text
-画面概述：
-主要约束：
-最终 Prompt：
-备选 Prompt：
-已自动补全项或方向决策摘要：
-```
+本 Playbook 只负责“成片需要包含什么视觉信息”，不负责最终对外展示结构。
 
-备选 Prompt 不是必须；只有确实存在另一条有价值方向时再提供。
+- 快速模式：严格服从 `../../../assets/templates/mode-quick-output-contract.md`，只交付最终 Prompt / Prompt Pack；
+- 交互模式：服从 `../../../assets/templates/mode-interactive-output-contract.md`；
+- 用户明确要求完整结构化文档时，才读取对应任务模板；
+- 不再从本 Playbook 直接输出“画面概述 / 主要约束 / 备选 Prompt / 自动补全项”等历史字段；
+- 最终 Prompt 必须经过 Prompt Finalization、Final Output Gate、QC 和自动修复。
 
 ## 常见失败与修复
 
