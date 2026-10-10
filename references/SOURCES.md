@@ -20,11 +20,11 @@
 - 来源 URL 或审计路径：当前维护会话中用户提供的文字需求与图像附件；无外部来源
 - 接收日期：2026-10-10
 - 使用边界：仅用于改进 Skill 的模型无关流程，不包含第三方内容
-- 使用方式：把简短文字输入的处理从机械补齐字段调整为内部视觉目标判断、重点维度选择、海报艺术指导与细节预算分配
+- 使用方式：把图像 Prompt 规划从机械补齐字段调整为内部视觉目标判断、主要元素完整覆盖、对象相关的可见细节拆解、重点维度加深及细节预算分配
 - 对应 Reference：`inputs/text-input-expansion.md`、`tasks/finished-image/playbook.md`、`assets/templates/mode-quick-output-contract.md`、`SKILL.md`
 - 直接引用情况：无
-- 修改说明：快速模式仍然零追问、只输出最终 Prompt；所有图像任务均需按各自特点合成完整视觉方案并明确主焦点、次级信息和支撑元素，识别全局/局部风格并检查跨元素一致性；海报再增加信息层级、版式与空间、视觉呼应三项专项指导。用户明确授权补充时，把未锁定部分视为创作委托。参考图仅支持可见设计逻辑的反推，不支持声称还原其原始 Prompt。
-- 验证：`../docs/reference-behavior-regression-final.md` Case 38–42；`../scripts/check_reference_integrity.py`。Case 39 已完成一轮真实图像复核，Case 40 和 Case 42 的真实模型画面及 Case 41 的跨类型输出仍待复核。
+- 修改说明：快速模式仍然零追问、只输出最终 Prompt；所有图像任务均需按各自特点合成完整视觉方案，为所有主要可见元素提供足以成像的具体描述，再按主次分配展开深度；抽象评价词需转成对象相关的可见属性。继续明确全局/局部风格和跨元素一致性；海报另有信息层级、版式与空间、视觉呼应专项。用户明确授权补充时，把未锁定部分视为创作委托。参考图仅支持可见设计逻辑的反推，不支持声称还原其原始 Prompt。
+- 验证：`../docs/reference-behavior-regression-final.md` Case 38–43；`../scripts/check_reference_integrity.py`。Case 39 已完成一轮真实图像复核；Case 40 和 Case 42 的真实模型画面及 Case 41、Case 43 的跨类型输出仍待复核。
 
 ---
 
