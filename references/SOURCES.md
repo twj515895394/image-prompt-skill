@@ -14,6 +14,20 @@
 
 ---
 
+## 快速模式自主视觉规划维护决策（2026-10-10）
+
+- 来源名称：仓库使用者对简短需求生成质量的反馈、两张用户提供的成图及维护决策
+- 来源 URL 或审计路径：当前维护会话中用户提供的文字需求与图像附件；无外部来源
+- 接收日期：2026-10-10
+- 使用边界：仅用于改进 Skill 的模型无关流程，不包含第三方内容
+- 使用方式：把简短文字输入的处理从机械补齐字段调整为内部视觉目标判断、重点维度选择、海报艺术指导与细节预算分配
+- 对应 Reference：`inputs/text-input-expansion.md`、`tasks/finished-image/playbook.md`、`assets/templates/mode-quick-output-contract.md`、`SKILL.md`
+- 直接引用情况：无
+- 修改说明：快速模式仍然零追问、只输出最终 Prompt；所有图像任务均需按各自特点合成完整视觉方案，海报再增加信息层级、版式与空间、视觉呼应三项专项指导。用户明确授权补充时，把未锁定部分视为创作委托。参考图仅支持可见设计逻辑的反推，不支持声称还原其原始 Prompt。
+- 验证：`../docs/reference-behavior-regression-final.md` Case 38–41；`../scripts/check_reference_integrity.py`。Case 39–40 的真实模型画面及 Case 41 的跨类型输出仍待复核。
+
+---
+
 ## 用户整理资料（2026-07-10）
 
 - 来源名称：仓库维护者整理的生图知识资料，共 15 份 Markdown
