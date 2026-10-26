@@ -144,5 +144,5 @@
 - 正反向验证：`docs/source-audits/user-curated-2026-10-26-fashion-design-sheet-validation.md`、最终行为回归 Case 44–48
 - 最终映射：`docs/source-audits/user-curated-2026-10-26-fashion-design-sheet-final-mapping.md`
 - 来源与范围：用户直接提供的文字规范；没有外部来源或第三方素材；未新增服装资料库或模式合同。
-- 当前状态：规则与文档已写入；本地完整性检查已运行，除临时 staging 尚待验收清理外没有发现其他问题；CI 与 staging 清理待完成。
+- 当前状态：规则、路由、来源审计、验证与最终映射已完成；PR #6 最新 Head 的 Reference Integrity CI 通过，staging 原文已清理；本地完整性检查通过。
 - 2026-10-26：根据用户提供的通用服装设计板规范，新增独立 `fashion-design` 任务路由。默认 9:16 竖版展示同一服装的正侧背全身视图、3–5 个对应细节和材质样片；模特仅承载服装且面部去识别化。同步更新 Playbook、路由、README、正反向回归、来源审计和最终映射。

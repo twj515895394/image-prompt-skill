@@ -3,7 +3,7 @@
 ## 来源
 
 - 来源名称：用户在本对话中直接提供的通用服装设计图规范
-- 来源方式：用户文字输入，原文临时保存在 `../source-staging/user-curated-2026-10-26-fashion-design-sheet/raw/user-spec.md`
+- 来源方式：用户在本对话中直接提供文字；原文按 staging 验收流程临时保存，并在本批次完整性检查与 Reference Integrity CI 通过后清理。
 - 接收日期：2026-10-26
 - 许可与状态：用户直接提供；没有附带第三方图片、品牌、作者风格或外部文本。未引入或声称拥有任何第三方材料。
 - 允许采用的方式：在本 Skill 中将要求抽象成通用、模型无关的任务规则。
@@ -33,4 +33,4 @@
 
 ## 正反向验证
 
-验证用例和加载预算审查见 `user-curated-2026-10-26-fashion-design-sheet-validation.md`。完成完整性检查与最新 CI 后，再清理 staging 原文。
+验证用例和加载预算审查见 `user-curated-2026-10-26-fashion-design-sheet-validation.md`。本地完整性检查与 PR 最新 Head 的 Reference Integrity CI 均通过后，已按流程清理 staging 原文。
