@@ -242,6 +242,19 @@
 - 同步更新：`../SKILL.md`、`../assets/templates/mode-quick-output-contract.md`、`../assets/templates/mode-interactive-output-contract.md`
 - 核心修订：所有最终 Prompt 在输出前统一执行 Prompt Finalization → QC → 自动修复 → QC 复检；Qwen-compatible 作为跨模型默认语义基线，GPT Image / Nano Banana 等只做最小表面格式适配
 
+## 用户提供的通用服装设计图规范（2026-10-26）
+
+- 来源名称：用户在当前对话中提供的 9:16 竖版服装设计展示板规范
+- 来源或审计路径：`../docs/source-audits/user-curated-2026-10-26-fashion-design-sheet.md`
+- 最终映射：`../docs/source-audits/user-curated-2026-10-26-fashion-design-sheet-final-mapping.md`
+- 接收日期：2026-10-26
+- 许可与边界：用户直接提供的文字需求；未提供第三方图片、品牌、作者风格或外部长文本。仅将要求抽象成通用任务规则，不补录或声称拥有未提供的第三方内容。
+- 使用方式：结构化为模型无关的任务流程与正反向路由用例，保留用户指定的画幅、三视图、去识别化、细节、材质与信息层级要求。
+- 正式 Reference：`tasks/fashion-design/playbook.md`
+- 同步更新：`references/index.md`、`references/tasks/index.md`、`SKILL.md`、`README.md`、最终行为回归
+- 直接引用情况：未复制第三方内容；用户的原始规范仅暂存在该批次 staging，验收后清理。
+- 验证：`../docs/source-audits/user-curated-2026-10-26-fashion-design-sheet-validation.md`
+
 ---
 
 ## 变更记录
