@@ -41,6 +41,7 @@
 - 局部替换、增删、修复或文字修改：`tasks/index.md`
 - 参考图反推 Prompt：`tasks/index.md`
 - 角色资产：`tasks/index.md`
+- 服装设计资产：`tasks/index.md`
 - 场景资产：`tasks/index.md`
 - 分镜资产：`tasks/index.md`
 - 视频首帧、尾帧和关键帧：`tasks/index.md`

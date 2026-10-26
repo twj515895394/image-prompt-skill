@@ -135,3 +135,14 @@
 - 2026-09-24：按用户反馈将三分区第 3 区收紧为只展示头部、发型与发饰，不展示颈部、肩线或服装，以集中呈现五官特征。
 - 2026-09-28：新增 Qwen-compatible Prompt Finalization 层，所有最终 Prompt 在输出前强制经过 QC、自动修复和复检，并保持跨模型可迁移。
 - 2026-10-20：按用户反馈将默认角色身份参考板改为竖版 9:16 上 1 下 3 四格：上方正脸头部特写；下方依次为无头正面身体、保留后脑且不露脸的背面身体、保留侧脸并与正脸特写身份一致的侧面身体。同步更新路由、版式职责、回归用例与历史来源记录。
+
+## 独立批次：用户提供的通用服装设计图规范（2026-10-26）
+
+- 来源审计：`docs/source-audits/user-curated-2026-10-26-fashion-design-sheet.md`
+- 正式 Reference：`references/tasks/fashion-design/playbook.md`
+- 路由：`references/index.md`、`references/tasks/index.md`、`SKILL.md`
+- 正反向验证：`docs/source-audits/user-curated-2026-10-26-fashion-design-sheet-validation.md`、最终行为回归 Case 44–48
+- 最终映射：`docs/source-audits/user-curated-2026-10-26-fashion-design-sheet-final-mapping.md`
+- 来源与范围：用户直接提供的文字规范；没有外部来源或第三方素材；未新增服装资料库或模式合同。
+- 当前状态：规则、路由、来源审计、验证与最终映射已完成；PR #6 最新 Head 的 Reference Integrity CI 通过，staging 原文已清理；本地完整性检查通过。
+- 2026-10-26：根据用户提供的通用服装设计板规范，新增独立 `fashion-design` 任务路由。默认 9:16 竖版展示同一服装的正侧背全身视图、3–5 个对应细节和材质样片；模特仅承载服装且面部去识别化。同步更新 Playbook、路由、README、正反向回归、来源审计和最终映射。
