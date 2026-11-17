@@ -257,6 +257,16 @@
 
 ---
 
+## 用户确认的 MJ 柔雾与梦境电影风格（2026-11-17）
+
+- 来源：用户在本次对话中提出的四向 MJ 审美风格及自动识别需求。
+- 接收日期：2026-11-17。
+- 许可与边界：直接来自用户的要求，无外部图片或完整第三方 Prompt；“MJ”不是官方参数语法。
+- 审计：`../docs/source-audits/user-curated-2026-11-17-mj-atmospheric-style.md`
+- 验证：`../docs/source-audits/user-curated-2026-11-17-mj-atmospheric-style-validation.md`
+- 唯一正式叶子：`styles/cinematic/mj-atmospheric-film-look.md`
+- 路由与说明：`../SKILL.md`、`styles/index.md`、`styles/cinematic/index.md`、`styles/photography/index.md`、`styles/3d-rendering/index.md`、`../README.md`
+
 ## 变更记录
 
 - 2026-07-10：建立来源登记基线。
@@ -270,3 +280,5 @@
 - 2026-08-30：将南鸢保真细节增强长文沉淀为 `image-editing` 的按需 control，并收窄整体图生图的质感优化边界。
 - 2026-08-30：将从零生成的皮肤五变量并入 `anti-ai-realism`，与保真编辑保持正交。
 - 2026-09-28：将 Qwen-Image-2.1 Prompt Rewrite / Edit 机制抽象为跨模型 Prompt Finalization Contract，并加入输出前 QC、自动修复与复检。
+
+- 2026-11-17：新增用户确认的 MJ 柔雾/梦境电影 A–D 风格定向、选项与验证规则。
