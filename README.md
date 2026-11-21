@@ -72,6 +72,7 @@
 - 已有成片的保真细节增强，只补皮肤微观纹理而不重新设计人物
 - 从零生成近景人像时，把皮肤拆成纹理、高光位置、半哑光基调和轻微不完美
 - MJ 目标风格路由：默认允许适度调整景深、面部光学柔化、高光晕染与前后景散景；A–D 主媒介仍根据题材和明确线索判断，并保留人物与构图锚点。
+- 场内 VFX 构造：按需设计能量、元素、弹体、武器轨迹、冲击、法术、召唤、转化或破坏，并把来源、形态、作用对象与环境响应组织成清晰静帧。
 
 ## MJ 风格与光学呈现
 
@@ -80,6 +81,8 @@
 普通快速模式直接输出完整 Prompt；若用户允许必要时先确认、而且主媒介分歧真的会影响成片，可以一次给出 A–D 风格选项与推荐答案；用户说“直接生成”则不追问。此功能不调用 Midjourney 官方 API，也不保证图生视频不会闪烁。
 
 正式规则：[MJ 柔雾电影风格 Reference](references/styles/cinematic/mj-atmospheric-film-look.md)。
+
+场内 VFX 由 [VFX 构造控制](references/controls/effects/vfx-construction.md) 与 [VFX 家族参考库](references/libraries/material-effect/vfx-effect-families.md) 按需支持；镜头景深、散景、柔化和高光晕染仍由 MJ 光学层处理。
 
 ## 两种运行模式
 

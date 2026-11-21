@@ -104,6 +104,7 @@
 
 只有相关维度真正影响结果时，再读取：
 
+- 场内 VFX 需要明确来源、形态、路径或环境响应时，读取 [VFX 构造控制](../../controls/effects/vfx-construction.md) 和 [VFX 家族参考库](../../libraries/material-effect/vfx-effect-families.md)。单纯的镜头光斑、浅景深或柔化不算场内特效。
 - 镜头与构图：`../../controls/composition-camera/index.md`
 - 海报/封面且版式尚未确定：`../../libraries/composition-shot/index.md`，按文字量和比例选择一个版式类型
 - 海报/封面需要标题、副文案或用户授权的补充文字：`../../styles/graphic-design/index.md`，读取文字与图像层级规则
@@ -115,6 +116,7 @@
 - 明确视觉风格：`../../styles/index.md`
 
 ## 输出骨架
+
 
 ```text
 画面概述：

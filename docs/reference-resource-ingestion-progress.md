@@ -135,6 +135,7 @@
 - 2026-09-24：按用户反馈将三分区第 3 区收紧为只展示头部、发型与发饰，不展示颈部、肩线或服装，以集中呈现五官特征。
 - 2026-09-28：新增 Qwen-compatible Prompt Finalization 层，所有最终 Prompt 在输出前强制经过 QC、自动修复和复检，并保持跨模型可迁移。
 - 2026-10-20：按用户反馈将默认角色身份参考板改为竖版 9:16 上 1 下 3 四格：上方正脸头部特写；下方依次为无头正面身体、保留后脑且不露脸的背面身体、保留侧脸并与正脸特写身份一致的侧面身体。同步更新路由、版式职责、回归用例与历史来源记录。
+- 2026-11-21：新增外部 VFX 特效构造抽象批次，按职责拆为静帧构造 control 与效果家族 library；更新任务路由、MJ 光学边界、来源、README、正反回归 Case 49–53、批次验证及最终映射。当前本地验收状态见下方独立批次小节；CI 以合并前 PR 最新 Head 为准。
 
 ## 独立批次：用户提供的通用服装设计图规范（2026-10-26）
 
@@ -146,3 +147,13 @@
 - 来源与范围：用户直接提供的文字规范；没有外部来源或第三方素材；未新增服装资料库或模式合同。
 - 当前状态：规则、路由、来源审计、验证与最终映射已完成；PR #6 最新 Head 的 Reference Integrity CI 通过，staging 原文已清理；本地完整性检查通过。
 - 2026-10-26：根据用户提供的通用服装设计板规范，新增独立 `fashion-design` 任务路由。默认 9:16 竖版展示同一服装的正侧背全身视图、3–5 个对应细节和材质样片；模特仅承载服装且面部去识别化。同步更新 Playbook、路由、README、正反向回归、来源审计和最终映射。
+
+## 独立批次：GitHub VFX 特效构造参考（2026-11-21）
+
+- 来源审计：`docs/source-audits/github-vfx-effect-engine-2026-11-21.md`
+- 正式 Reference：`references/controls/effects/vfx-construction.md`、`references/libraries/material-effect/vfx-effect-families.md`
+- 路由：`SKILL.md`、`finished-image`、`image-to-image`、`image-editing`、`video-reference-frames` Playbook、分类索引及 MJ style 边界。
+- 正反向验证：`docs/source-audits/github-vfx-effect-engine-2026-11-21-validation.md`、最终行为回归 Case 49–53。
+- 最终映射：`docs/source-audits/github-vfx-effect-engine-2026-11-21-final-mapping.md`
+- 来源与边界：外部仓库未声明许可证；按内部研究和结构抽象处理，不纳入第三方词库、脚本、长文或媒体资源。新知识限定于场内 VFX 静帧，不覆盖镜头光学、完整动画时序或渲染引擎参数。
+- 当前状态：批次验证与临时来源清理完成；本地 Reference Integrity（151 个 Markdown、89 个 Reference、30 个路由索引）和 `git diff --check` 通过。合并前核对 PR 最新 Head 的 `Reference Integrity` CI。

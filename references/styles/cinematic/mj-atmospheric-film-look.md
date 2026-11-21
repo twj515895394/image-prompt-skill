@@ -113,6 +113,8 @@
 
 ## 联动与加载预算
 
+- 若本图另有魔法、能量、元素、冲击等场内特效，按需读取 [VFX 构造控制](../../controls/effects/vfx-construction.md) 与 [VFX 家族参考库](../../libraries/material-effect/vfx-effect-families.md)；本页仍只负责整体媒介和镜头光学呈现。散景是镜头焦外光斑，不得代替场内火花或粒子。
+
 本叶子占用本轮 **0–1 style** 的一份；同一轮不再加载 `film-still-language.md` 或其他 style 叶子。相邻能力按真实缺口并遵守 0–2 controls、0–2 libraries 的预算：
 
 - 电影叙事事件：`film-still-language.md`（另选时用它替代本页）。

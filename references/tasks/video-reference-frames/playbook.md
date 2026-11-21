@@ -70,12 +70,14 @@
 
 ## 按需下钻
 
+- 当单张首帧、尾帧或关键过渡帧需要呈现明确的场内 VFX 时，读取 [VFX 构造控制](../../controls/effects/vfx-construction.md) 和 [VFX 家族参考库](../../libraries/material-effect/vfx-effect-families.md)。只构造当前静帧；帧间特效时序仍由视频参考帧规则决定。
 - 姿态与动作阶段：`../../controls/pose-action/index.md`
 - 空间与运动方向：`../../controls/spatial-blocking/index.md`
 - 身份和跨帧稳定：`../../controls/identity-consistency/index.md`
 - 镜头和构图：`../../controls/composition-camera/index.md`
 
 ## 输出骨架
+
 
 ```text
 帧类型：

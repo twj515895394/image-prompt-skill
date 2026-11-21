@@ -268,6 +268,15 @@
 - 路由与说明：`../SKILL.md`、`styles/index.md`、`styles/cinematic/index.md`、`styles/photography/index.md`、`styles/3d-rendering/index.md`、`../README.md`
 - 2026-11-20 用户实测补充：在同一叶子中完善半写实 3DCG 人像的媒介/肤质、浅景深与光学扩散、定向柔光、散景配色和冲突词 QC；后续确认 MJ 作为目标风格时默认允许调整光学层与散景，不新增叶子。
 
+## GitHub VFX 特效构造参考（2026-11-21）
+
+- 来源：[`snowfrost/skill-movie` 的 `vfx-effect-construction-engine`](https://github.com/snowfrost/skill-movie/tree/69f6db670ecf305e84f199e418bddbf2c1d988fe/vfx-effect-construction-engine)，固定审阅修订 `69f6db670ecf305e84f199e418bddbf2c1d988fe`。
+- 接收日期：2026-11-21；来源文件和抽样范围见 [来源审计](../docs/source-audits/github-vfx-effect-engine-2026-11-21.md)。
+- 许可：仓库未声明许可证，根目录 LICENSE 不存在，状态未知。按本项目维护决策只做内部结构抽象，不复制第三方正文、词库、脚本或媒体资源。
+- 正式沉淀：[`controls/effects/vfx-construction.md`](controls/effects/vfx-construction.md) 负责静帧构造方法；[`libraries/material-effect/vfx-effect-families.md`](libraries/material-effect/vfx-effect-families.md) 负责效果家族分类。
+- 路由：`SKILL.md`、对应任务 Playbook、`controls/index.md`、`libraries/material-effect/index.md` 和 MJ style 边界联动。
+- 验证与迁移：见 [批次验证](../docs/source-audits/github-vfx-effect-engine-2026-11-21-validation.md)、[最终映射](../docs/source-audits/github-vfx-effect-engine-2026-11-21-final-mapping.md) 和 `docs/reference-behavior-regression-final.md` Case 49–53。
+
 ## 变更记录
 
 - 2026-07-10：建立来源登记基线。
@@ -284,3 +293,4 @@
 
 - 2026-11-17：新增用户确认的 MJ 柔雾/梦境电影 A–D 风格定向、选项与验证规则。
 - 2026-11-17：补充用户举例的“MJ 风格复杂精致东方白龙”弱信号题材定位、结构化细节展开与防误路由回归；沿用同一正式风格叶子，无外部资料摄取。
+- 2026-11-21：将外部 VFX 构造方法抽象为静帧 control 与效果家族 library，并明确其与 MJ 镜头光学的边界。
