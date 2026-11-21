@@ -274,7 +274,8 @@ GPT Image、Nano Banana 或其他模型默认复用同一最终 Prompt 语义骨
 9. **Salient Element Coverage & Specificity**：主体、关键道具、环境锚点、文字/图形等所有主要可见元素是否都有对象相关、可观察且足以成像的描述；重点元素是否有适当更深的形态、状态、材质或关系信息；是否仍有主要元素只被“漂亮/高级/古风”等抽象词或名词清单带过；
 10. **Lighting & Material**：需要生成稳定性的光线、材质和表面反应是否具体；
 11. **Prompt Hygiene**：是否存在重复句、互斥要求、无效质量词、tag soup、无关叙事或过量负向堆叠；
-12. **Format**：是否符合当前 mode output contract；如果使用 Qwen 结构化输出，字段与比例逻辑是否正确。
+12. **Style Term Literalization**：风格简称或路由词（特别是“MJ 风格 / MJ 审美”）是否已按照对应 style Reference 转成模型可执行的画面属性，而不是原样留在最终 Prompt 中充当视觉指令；只有用户明确要求目标平台语法或参数时，才保留必要的平台格式，并同时写明自然语言视觉描述；
+13. **Format**：是否符合当前 mode output contract；如果使用 Qwen 结构化输出，字段与比例逻辑是否正确。
 
 任一 Hard Check 不通过，不得直接输出。
 

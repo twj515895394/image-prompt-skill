@@ -267,6 +267,7 @@
 - 唯一正式叶子：`styles/cinematic/mj-atmospheric-film-look.md`
 - 路由与说明：`../SKILL.md`、`styles/index.md`、`styles/cinematic/index.md`、`styles/photography/index.md`、`styles/3d-rendering/index.md`、`../README.md`
 - 2026-11-20 用户实测补充：在同一叶子中完善半写实 3DCG 人像的媒介/肤质、浅景深与光学扩散、定向柔光、散景配色和冲突词 QC；后续确认 MJ 作为目标风格时默认允许调整光学层与散景，不新增叶子。
+- 2026-11-21 用户实测发现最终 Prompt 仍保留“日系 MJ 审美”标签；在 MJ style QC 和通用 Prompt Finalization 中将其提升为硬门禁，最终正文必须改用可观察的视觉属性，除明确要求 Midjourney 平台语法外移除该标签。详情见原审计与 P19 / Case 54 回归。
 
 ## GitHub VFX 特效构造参考（2026-11-21）
 
