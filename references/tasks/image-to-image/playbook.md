@@ -80,6 +80,7 @@
 
 ## 按需下钻
 
+- 当用户明确要求新增或重构场内特效，且需要设计其来源、形态、接触或受光关系时，读取 [VFX 构造控制](../../controls/effects/vfx-construction.md) 和 [VFX 家族参考库](../../libraries/material-effect/vfx-effect-families.md)。只要求 MJ 景深、光斑、柔化或晕染时沿用 MJ style，不加载 VFX 库；未授权改变的身份、姿势、服装、构图、场景与文字继续锁定。
 - 参考冲突和保留强度：`../../controls/reference-handling/index.md`
 - 身份稳定：`../../controls/identity-consistency/index.md`
 - 镜头和构图：`../../controls/composition-camera/index.md`
@@ -87,6 +88,7 @@
 - 风格实现：`../../styles/index.md`
 
 ## 输出骨架
+
 
 ```text
 原图可保留项：

@@ -14,3 +14,5 @@
 - 真实感、自然感、去 AI 感、保真细节增强和完成度：`realism-quality/index.md`
 
 一个维度已经足够解决问题时，不继续加载相邻控制页。
+
+- 场内 VFX 的静帧构造、主次选择与主体/环境联动：[effects/vfx-construction.md](effects/vfx-construction.md)
