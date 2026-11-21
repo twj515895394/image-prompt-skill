@@ -6,7 +6,7 @@
 
 - 摄影与照片质感：`photography/index.md`
 - 电影画面与影视视觉：`cinematic/index.md`
-- 用户明确提出 MJ 审美、柔雾低反差电影、梦境电影、或半写实 3DCG 氛围垫图时，也通过 `cinematic/index.md` 路由到专用 A–D 风格叶子；单独“低饱和”不足以触发。
+- 用户明确以 MJ 风格作为输出目标时（包括未补充柔雾或色调词的请求），通过 `cinematic/index.md` 读取 MJ 风格叶子；光学呈现和前后景散景默认可按画面调整，A–D 媒介与整体色调仍按具体证据判断。
 - 日本动画及相关动画风格：`anime/index.md`
 - 漫画、韩漫和条漫表现：`comic-manhwa/index.md`
 - 插画、绘本和传统绘画媒介：`illustration/index.md`

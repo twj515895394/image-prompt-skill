@@ -23,4 +23,4 @@
 - 产品 Hero 构图和棚拍灯光进入对应 controls；
 - 真实商业产品摄影进入 `../photography/product-photography.md`；
 - 纯 2D 像素艺术进入 `../illustration/pixel-art-visual-language.md`。
-- 半写实 3DCG 人物或场景若主目标是 MJ 柔雾、梦境电影垫图，路由到 `../cinematic/mj-atmospheric-film-look.md`；产品 CGI、微缩建筑等仍优先相应专用叶子。
+- 用户明确以 MJ 风格为当前输出目标时，即使没有另写柔雾或梦境线索，也路由到 `../cinematic/mj-atmospheric-film-look.md` 处理光学呈现与散景；3D 媒介与物体结构仍按对应控制规则处理。未指定 MJ 风格时，产品 CGI、微缩建筑等继续优先相应专用叶子。
